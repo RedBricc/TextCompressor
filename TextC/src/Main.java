@@ -20,7 +20,7 @@ public class Main {
 		String fileName;
 		System.out.println("input file name:");
 		//fileName = sc.nextLine();
-		fileName = "kennedy.xls";
+		fileName = "alice.txt";
 		sc.close();
 		Comp(fileName, "temp.dat");
 		Decomp("temp.dat", "decomp.txt");

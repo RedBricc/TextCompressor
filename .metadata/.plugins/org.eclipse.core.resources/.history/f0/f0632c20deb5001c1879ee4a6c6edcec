@@ -1,0 +1,26 @@
+// Stores key and value pair with node functionality for implementing a binary tree.
+public class Value implements Comparable<Value> {
+	String key;
+	Integer value;
+	int side = -1;
+	Value child1, child2, parent = null;
+	
+	// Makes a Value that acts as a node in a tree.
+	public Value(Value _child1, Value _child2, int _value) {
+		child1 = _child1;
+		child2 = _child2;
+		value = _value;
+	}
+
+	// Makes a Value that stores data.
+	public Value(String _key, int _value) {
+		key = _key;
+		value = _value;
+	}
+	public Value()
+	
+	@Override
+	public int compareTo(Value val) {
+		return value.compareTo(val.value);
+    }
+}

@@ -1,0 +1,26 @@
+import java.util.Queue;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.Set;
+
+//Functions needed to decode text files to byte array.
+public class DecompTree {
+	Value top;
+	
+	public void Decomp(byte[] bytes) {
+		int fillerBits = (int)(bytes[0]);
+		
+		// Reassemble frequency tree.
+		char val = (char)(bytes[1]);
+		ArrayList<ArrayList<Byte>> data = new ArrayList<ArrayList<Byte>>();
+		int layer = 0;
+		while(val == 10) {
+			// TODO: implement word functionality!
+			data.add(new ArrayList<Byte>());
+			if(val == 26) {
+				
+			}
+		}
+	}
+}

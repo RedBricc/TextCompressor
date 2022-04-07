@@ -1,0 +1,18 @@
+import java.util.ArrayList;
+
+//Functions needed to decode text files to byte array.
+public class DecompTree {
+	Value top;
+	
+	public void Decomp(char[] chars) {
+		int fillerBits = (int)(chars[0]);
+		int compLayer = (int)(chars[1]);
+		
+		// Reassemble frequency tree.
+		int index = 2;
+		char val = (char)(chars[index]);
+		while(val != 10) {
+			data.add(new Value())
+		}
+	}
+}

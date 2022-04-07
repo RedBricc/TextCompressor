@@ -1,0 +1,14 @@
+import java.util.PriorityQueue;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.Set;
+
+//Functions needed to decode text files to byte array.
+public class DecompTree {
+	Value top;
+	
+	public void Decomp(byte[] bytes) {
+		
+	}
+}
