@@ -20,7 +20,7 @@ public class Main {
 		String fileName;
 		System.out.println("input file name:");
 		//fileName = sc.nextLine();
-		fileName = "input.txt";
+		fileName = "alice29.txt";
 		sc.close();
 		Comp(fileName, "temp.dat");
 		Decomp("temp.dat", "decomp.txt");
@@ -68,17 +68,14 @@ public class Main {
 			}
 		}
 		
-		//CompTree.PrintTree(top);
+		CompTree.PrintTree(top);
 		
 		// Decode text and save it as byte array.
 		int bitCursor = 7;
 		ArrayList<Byte> text = new ArrayList<Byte>();
 		Value val = top;
 		cursor++;
-		while(cursor < bytes.length-1 || (cursor == bytes.length-1 && fillerBits < bitCursor)) {
-			if(cursor == bytes.length-1) {
-				System.out.println(bitCursor + " " + fillerBits);
-			}
+		while(cursor < bytes.length-1 || (cursor == bytes.length-1 && 8-bitCursor >= fillerBits)) {
 			if(val.key == 0) {
 				val = val.child[(bytes[cursor] >> bitCursor) & 1];
 				if(bitCursor > 0) {
@@ -123,7 +120,7 @@ public class Main {
 			sc = new Scanner(new FileReader(fileName));
 			while (sc.hasNextLine()) {
 				// Save whole text for later use.
-				String line = sc.nextLine() + "\n";
+				String line = sc.nextLine() + ((sc.hasNextLine()) ? "\n" : "");
 				text += line;
 				byte[] bytes = line.getBytes(StandardCharsets.UTF_8);
 				

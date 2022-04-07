@@ -20,7 +20,7 @@ public class Main {
 		String fileName;
 		System.out.println("input file name:");
 		//fileName = sc.nextLine();
-		fileName = "alice.txt";
+		fileName = "alice29.txt";
 		sc.close();
 		Comp(fileName, "temp.dat");
 		Decomp("temp.dat", "decomp.txt");
@@ -68,7 +68,7 @@ public class Main {
 			}
 		}
 		
-		CompTree.PrintTree(top);
+		//CompTree.PrintTree(top);
 		
 		// Decode text and save it as byte array.
 		int bitCursor = 7;
