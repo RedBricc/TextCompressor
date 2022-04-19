@@ -14,11 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>src/output.txt</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PARENT_LOC/output.txt</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>

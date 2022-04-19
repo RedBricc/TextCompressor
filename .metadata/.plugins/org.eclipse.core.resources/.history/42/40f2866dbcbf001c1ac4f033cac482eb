@@ -21,6 +21,8 @@ class Value implements Comparable<Value> {
 	Byte side = -1;
 	public static int childCount = 2;
 	Value child[] = new Value[childCount], parent = null;
+	// Used to mark last byte in full tree, because it's key will be indistinguishable from the null-byte.
+	boolean isLast = false;
 	
 	// Makes a Value that acts as a node in a tree.
 	public Value(Value _child[], int _value) {
@@ -57,7 +59,6 @@ public class Main {
 		String choiseStr;
 		String fileName, outFileName, firstFile, secondFile;
 		Scanner sc = new Scanner(System.in);
-		sc.useDelimiter("\\s");
 		
 		loop: while (true) {
 			
@@ -176,8 +177,7 @@ public class Main {
 			}
 		}
 		
-		// If necessary, find a free byte in the text that will be used to replace any characters with the value of 0 (null).
-		// The tree decompiling process relies on this symbol to not be present.
+		// If necessary, find a free byte in the text that will be used to represent null.
 		byte nullByte = 0;
 		boolean full = nullFound;
 		if(nullFound) {
@@ -204,9 +204,9 @@ public class Main {
 		
 		PriorityQueue<Value> dataQueue = new PriorityQueue<Value>(data);
 		
-		// If all bytes are used, use byte with least priority as nullbyte.
+		// If all bytes are used, use byte with least priority as null-byte.
 		if(full) {
-			nullByte = data.get(data.size()-1).key;
+			nullByte = data.get(0).key;
 		}
 		
 		// Convert sorted array into tree of values. The largest values are at the top.
@@ -228,8 +228,7 @@ public class Main {
 		}
 		
 		top = dataQueue.poll();
-		//tree.PrintData();
-		//CompTree.PrintTree(tree.top);
+		//PrintTree(top);
 		
 		// Encode tree into byte array using frequency tree.
 		byte[] head = TreeToBytes(treeSize, top, nullByte);
@@ -250,13 +249,11 @@ public class Main {
 		if(index != 8) {
 			body.add(curByte);
 		}
+
 		byte[] out = new byte[2+head.length+body.size()];
 		// Store information about how many filler bits exist at the end of the file.
 		out[0] = (byte)((7-index) << 5);
 		out[1] = nullByte;
-		if(full) {
-			System.out.println(treeSize);
-		}
 		
 		// Assemble final output.
 		index = 2;
@@ -308,17 +305,18 @@ public class Main {
 		top = new Value(bytes[cursor]);
 		queue.add(top);
 		
-		while(queue.size() != 0 && valueCount < 256) {
+		while(queue.size() != 0 && valueCount < 255) {
 			Value val = queue.poll();
 			if(val.key == nullByte) {
 				for(int i = 0; i < Value.childCount; i++) {
 					val.child[i] = new Value(bytes[++cursor]);
-					valueCount++;
 					if(bytes[cursor] == nullByte) {
 						queue.add(val.child[i]);
+					} else {
+						valueCount++;
 					}
 				}
-			}
+			} 
 		}
 		
 		//PrintTree(top);
@@ -327,11 +325,13 @@ public class Main {
 		int bitCursor = 7;
 		ArrayList<Byte> text = new ArrayList<Byte>();
 		Value val = top;
+
 		cursor++;
 		if(top.key == nullByte) {
 			while(cursor < bytes.length-1 || (cursor == bytes.length-1 && (bitCursor > fillerBits || val.key != nullByte))) {
-				if(val.key == nullByte) {
-					val = val.child[(bytes[cursor] >> bitCursor) & 1];
+				Value child = val.child[(bytes[cursor] >> bitCursor) & 1];
+				if(val.key == nullByte && child != null) {
+					val = child;
 					if(bitCursor > 0) {
 						bitCursor--;
 					} else {
