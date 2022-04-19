@@ -1,9 +1,0 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-
-public class CData {
-	public String text = "";
-	public HashMap<String, Integer> words = new HashMap<String, Integer>();
-	public HashMap<Character, Integer> chars = new HashMap<Character, Integer>();
-	public String result = "";
-}

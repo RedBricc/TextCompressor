@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value=""/>
+		<item key="selection" value="!&quot;"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="/n"/>
-			<item value="75"/>
-			<item value="-80"/>
-			<item value="101"/>
-			<item value="getBytes"/>
-			<item value="top"/>
-			<item value="toArray"/>
-			<item value="child"/>
-			<item value="++index"/>
-			<item value="char"/>
-			<item value="ch"/>
-			<item value="High-level languages m"/>
-			<item value="Denise (1995"/>
-			<item value="Denise (1995)"/>
-			<item value="�"/>
+			<item value="!&quot;"/>
+			<item value="!"/>
+			<item value="-48"/>
+			<item value="System.out"/>
+			<item value="TODO"/>
+			<item value="full"/>
+			<item value="nullByte"/>
+			<item value="sc.close"/>
+			<item value="tree"/>
+			<item value="8"/>
+			<item value="String"/>
+			<item value="text"/>
+			<item value="sc.clo"/>
+			<item value="resultFile"/>
+			<item value="sourceFile"/>
 		</list>
 		<list key="replacehistory">
+			<item value="outFileName"/>
+			<item value="fileName"/>
 			<item value="index++"/>
 			<item value="-"/>
 			<item value="chars"/>

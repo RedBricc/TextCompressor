@@ -1,6 +1,0 @@
-import java.util.HashMap;
-
-public class CData {
-	public HashMap<String, Integer> words = new HashMap<String, Integer>();
-	public String text = "";
-}
