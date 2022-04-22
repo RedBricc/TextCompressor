@@ -3,7 +3,6 @@
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -54,11 +53,56 @@ class Value implements Comparable<Value> {
  }
 }
 
+//Stores key and value pair with node functionality for implementing a verbose binary tree.
+class Word implements Comparable<Word> {
+	Byte[] key = null;
+	Integer value;
+	Byte side = -1;
+	public boolean compareValue = true;
+	public static int childCount = 2;
+	Word child[] = new Word[childCount], parent = null;
+	// Used to mark last byte in full tree, because it's key will be indistinguishable from the null-byte.
+	boolean isLast = false;
+	
+	// Makes a Value that acts as a node in a tree.
+	public Word(Word _child[], Integer _value) {
+		child = _child;
+		value = _value;
+	}
+
+	// Makes a Value that stores data.
+	public Word(Byte _key[], int _value) {
+		key = _key;
+		value = _value;
+	}
+	public Word(Byte _key[]) {
+		key = _key;
+	}
+	
+	// Calculate the sum of children's value.
+	public static Integer calculateValue(Word ch[]) {
+		Integer sum = 0;
+		for(Word c : ch) {
+			sum += c.value;
+		}
+		return sum;
+	}
+	
+	// Compare two Word objects either based on value or key length
+	@Override
+	public int compareTo(Word val) {
+		return (compareValue) ? value.compareTo(val.value) : Integer.compare(key.length, val.key.length)*-1;
+ }
+}
+
 public class Main {
 	public static void main(String[] args) {
 		String choiseStr;
 		String fileName, outFileName, firstFile, secondFile;
 		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Testing Verbose Huffman Coding...");
+		VerboseHuffmanC("tests/html/File1.html", "out.dat");
 		
 		loop: while (true) {
 			
@@ -141,7 +185,235 @@ public class Main {
 		}
 	}
 
-	public static void comp(String fileName, String outFileName) {
+	public static void comp(String inFileName, String outFileName) {
+		AdaptiveHuffmanC(inFileName, outFileName);
+	}
+	
+	public static void decomp(String inFileName, String outFileName) {
+		AdaptiveHuffmanD(inFileName, outFileName);
+	}
+	
+	static void VerboseHuffmanC(String inFileName, String outFileName) {
+		// Helps keep track of what goes where.
+		ArrayList<Word> data = new ArrayList<Word>();
+		HashMap<String, Word> map = new HashMap<String, Word>();
+		Word top;
+		// A word here is defined as a sequence of bytes.
+		final int maxWordLength = 1;
+		int treeSize = 1;
+		// Get character data from input file.
+		HashMap<String, Integer> words = new HashMap<String, Integer>();
+		Boolean nullFound = false;
+		byte[] bytes;
+		try {
+			bytes = ReadFile(inFileName);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return;
+		}
+		
+		byte[] nullByte = new byte[] {0};
+		boolean full = nullFound;
+		
+		// Save all byte sequences of length 1 to maxWordLength and count how many times they're used.
+		for(int wordSize = 1; wordSize <= maxWordLength; wordSize++) {
+			for (int curByte = 0; curByte < bytes.length; curByte++) {
+				byte word[] = new byte[wordSize];
+				for(int i = 0; i < wordSize; i++) {
+					if(curByte+i < bytes.length) {
+						word[i] = bytes[i+curByte];
+					} else {
+						word = new byte[i];
+						for(int l = 0; l < i; l++) {
+							word[l] = bytes[curByte];
+						}
+					}
+				}
+				
+				if(word.length == 1 && word[0] == 0) {
+					nullFound = true;
+				}
+				// Use String as wrapper for byte array as arrays can't be hashed.
+				if(words.containsKey(new String(word))) {
+					words.merge(new String(word), 1, Integer::sum);
+				}else {
+					words.put(new String(word), 1);
+				}
+			}
+		}
+		
+		int count = 0;
+		for(Entry<String, Integer> word : words.entrySet()) {
+			for(Byte b : word.getKey().getBytes()) {
+				//System.out.print(b + " ");
+				count++;
+			}
+			//System.out.println();
+ 		}
+		System.out.println("total: " + count);
+		
+		// If necessary, find a free byte in the text that will be used to represent null.
+		int charCount = 1;
+		while(full) {
+			byte[] test = new byte[charCount];
+			// Set default value.
+			for(int j = 0; j < charCount; j++) {
+				test[j] = 0;
+			}
+			// Test all possible values to find the smallest free one.
+			for(int j = 0; j < charCount; j++) {
+				for(int i = 0; i < 256; i++) {
+					test[j] = (byte) i;
+							
+					if(!words.containsKey(new String(test))) {
+						nullByte = test;
+						full = false;
+						break;
+					}
+				}
+			}
+			charCount++;
+		}
+		
+		// Convert byte sequence data into sorted array.
+		for(Entry<String, Integer> e : words.entrySet()) {
+			Byte Bytes[] = new Byte[e.getKey().getBytes().length];
+			for(int i = 0; i < e.getKey().getBytes().length; i++) {
+				Bytes[i] = e.getKey().getBytes()[i];
+			}
+			Word val = new Word(Bytes, e.getValue());
+			int index = 0;
+			while(index < data.size() && data.get(index).value < val.value) {
+				index++;
+			}
+			data.add(index, val);
+			map.put(new String(e.getKey().getBytes()), data.get(index));
+		}
+		
+		// Fill priority queue with found byte sequences until all of the original text can be coded for.
+		PriorityQueue<Word> wordQueue = new PriorityQueue<Word>();
+		byte found[] = new byte[bytes.length];
+		loop : for(Word val : data) {
+			for(int i = 0; i < bytes.length; i++) {
+				int bytePos;
+				for(bytePos = 0; bytePos < val.key.length; bytePos++) {
+					if(bytes[i] != val.key[bytePos]) {
+						break;
+					}
+				}
+				if(bytePos == val.key.length-1) {
+					boolean isNew = false;
+					for(int j = 0; j < val.key.length && i+j < found.length; j++) {
+						if(found[i+j] == 0) {
+							isNew = true;
+							found[i+j] = 1;
+						}
+					}
+					if(isNew) {
+						val.compareValue = false;
+						wordQueue.add(val);
+						int sum = 0;
+						for(byte b : found) {
+							sum += b;
+						}
+						if(sum == found.length) {
+							break loop;
+						}
+						break;
+					}
+				}
+			}
+		}
+		
+		int count2 = 0;
+		for(Word word : wordQueue) {
+			for(Byte b : word.key) {
+				//System.out.print(b + " ");
+				count2++;
+			}
+			//System.out.println();
+ 		}
+		System.out.println("total: " + count2);
+		
+		// Remove words that are subsets of other words.
+		found = new byte[bytes.length];
+		PriorityQueue<Word> dataQueue = new PriorityQueue<Word>();
+		loop : while(!wordQueue.isEmpty()) {
+			Word val = wordQueue.poll();
+			val.compareValue = true;
+			for(int i = 0; i < bytes.length; i++) {
+				int bytePos;
+				for(bytePos = 0; bytePos < val.key.length; bytePos++) {
+					if(bytes[i] != val.key[bytePos]) {
+						break;
+					}
+				}
+				if(bytePos == val.key.length-1) {
+					boolean isNew = false;
+					for(int j = 0; j < val.key.length && i+j < found.length; j++) {
+						if(found[i+j] == 0) {
+							isNew = true;
+							found[i+j] = 1;
+						}
+					}
+					if(isNew) {
+						dataQueue.add(val);
+						int sum = 0;
+						for(byte b : found) {
+							sum += b;
+						}
+						if(sum == found.length) {
+							break loop;
+						}
+						break;
+					}
+				}
+			}
+		}
+		
+		int count3 = 0;
+		for(Word word : dataQueue) {
+			for(Byte b : word.key) {
+				//System.out.print(b + " ");
+				count3++;
+			}
+			//System.out.println();
+ 		}
+		System.out.println("total: " + count3);
+		
+		// Convert sorted array into tree of values. The largest values are at the top.
+		Word c[] = new Word[] {dataQueue.peek(), dataQueue.peek()};
+		while(dataQueue.size() > 1) {
+			c = new Word[Word.childCount];
+			for(int i = 0; i < c.length; i++) {
+				c[i] = dataQueue.poll();
+			}
+			Word parent = new Word(c, Word.calculateValue(c));
+			
+			// Save parent and side information for path building.
+			for(byte i = 0; i < c.length; i++) {
+				c[i].parent = parent;
+				c[i].side = i;
+			}
+			
+			dataQueue.add(parent);
+			treeSize += Word.childCount;
+		}
+		
+		// If all bytes are used, use byte with least priority as null-byte.
+		if(full) {
+			byte nb[] = new byte[c[1].key.length];
+			for(int i = 0; i < c[1].key.length; i++) {
+				nb[i] = c[1].key[i];
+			}
+			nullByte = nb;
+		}
+		
+		top = dataQueue.poll();
+		PrintTree(top);
+	}
+	
+	static void AdaptiveHuffmanC(String inFileName, String outFileName) {
 		// Helps keep track of what goes where.
 		ArrayList<Value> data = new ArrayList<Value>();
 		HashMap<Byte, Value> map = new HashMap<Byte, Value>();
@@ -150,17 +422,9 @@ public class Main {
 		// Get character data from input file.
 		HashMap<Byte, Integer> words = new HashMap<Byte, Integer>();
 		Boolean nullFound = false;
-		FileInputStream file;
 		byte[] bytes;
 		try {
-			// Take input file and convert it to byte array.
-			file = new FileInputStream(fileName);
-			bytes = new byte[file.available()];
-			file.read(bytes);
-			file.close();
-		} catch (FileNotFoundException ex) {
-			ex.printStackTrace();
-			return;
+			bytes = ReadFile(inFileName);
 		} catch (IOException e) {
 			e.printStackTrace();
 			return;
@@ -190,8 +454,8 @@ public class Main {
 			}
 		}
 		
-		// Create frequency tree using char values used for future size reference.
-		// Convert character data into sorted array.
+		// Create frequency tree using byte values used for future size reference.
+		// Convert byte data into sorted array.
 		for(Entry<Byte, Integer> e : words.entrySet()) {
 			Value val = new Value(e.getKey(), e.getValue());
 			int index = 0;
@@ -275,18 +539,10 @@ public class Main {
 		}
 	}
 	
-	public static void decomp(String fileName, String outFileName) {
-		FileInputStream in = null;
+	static void AdaptiveHuffmanD(String inFileName, String outFileName) {
 		byte[] bytes;
 		try {
-			// Take input file and convert it to byte array.
-			in = new FileInputStream(fileName);
-			bytes = new byte[in.available()];
-			in.read(bytes);
-			in.close();
-		} catch (FileNotFoundException ex) {
-			ex.printStackTrace();
-			return;
+			bytes = ReadFile(inFileName);
 		} catch (IOException e) {
 			e.printStackTrace();
 			return;
@@ -373,6 +629,16 @@ public class Main {
 		catch (Exception ex) {
 			ex.printStackTrace();
 		}
+	}
+	
+	static byte[] ReadFile(String fileName) throws IOException {
+		FileInputStream file;
+		// Take input file and convert it to byte array.
+		file = new FileInputStream(fileName);
+		byte out[] = new byte[file.available()];
+		file.read(out);
+		file.close();
+		return out;
 	}
 	
 	static byte[] GetPath (HashMap<Byte, Value> map, Byte target) {
@@ -474,6 +740,62 @@ public class Main {
 				}
 			}
 			index++;
+			System.out.println();
+			layer = newLayer;
+		}
+	}
+	public static void PrintTree(Word first) {
+		ArrayList<Word> layer = new ArrayList<Word>();
+		
+		if(first.key == null) {
+			System.out.println(first.key);
+		} else {
+			System.out.print("[");
+			for(int i = 0; i < first.key.length; i++) {
+				System.out.print(first.key[i] + ",");
+			}
+			System.out.println("[");
+		}
+		
+		for(Word child : first.child) {
+			if(child != null) {
+				layer.add(child);
+			}
+		}
+		int index = 0;
+		while(layer.size() > 0) {
+			ArrayList<Word> newLayer = new ArrayList<Word>();
+			
+			
+			for(Word v : layer) {
+				if(v.key == null) {
+					System.out.print(v.key);
+				} else {
+					System.out.print("[");
+					for(int i = 0; i < v.key.length; i++) {
+						System.out.print(v.key[i]);
+						if(i+1 == v.key.length) {
+							System.out.print("]");
+						} else {
+							System.out.print(",");
+						}
+					}
+				}
+				
+				if(index%2==0) {
+					System.out.printf("^");
+				} else {
+					System.out.printf(" ");
+				}
+				
+				for(Word child : v.child) {
+					if(child != null) {
+						newLayer.add(child);
+					}
+				}
+				index++;
+			}
+			
 			System.out.println();
 			layer = newLayer;
 		}
