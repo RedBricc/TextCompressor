@@ -104,12 +104,16 @@ public class Main {
 		
 		System.out.println("Testing Verbose Huffman Coding...");
 		try {
-			VerboseHuffmanC("tests/html/File1.html", "outV3.dat", 3);
-			VerboseHuffmanC("tests/html/File1.html", "outV4.dat", 4);
-			VerboseHuffmanC("tests/html/File1.html", "outV5.dat", 5);
-			VerboseHuffmanC("tests/html/File1.html", "outV6.dat", 6);
-			VerboseHuffmanC("tests/html/File1.html", "outV7.dat", 7);
-			VerboseHuffmanC("tests/html/File1.html", "outV8.dat", 8);
+			System.out.print("Testing encoding... ");
+			long start = System.nanoTime();
+			VerboseHuffmanC("tests/html/File1.html", "out.dat", 2);
+			System.out.println(System.nanoTime() - start + "ns");
+			start = System.nanoTime();
+			System.out.print("Testing decoding... ");
+			VerboseHuffmanD("out.dat", "test.html");
+			System.out.println(System.nanoTime() - start + "ns");
+			System.out.println("Checking if equal..." + equal("tests/html/File1.html", "test.html"));
+			
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
@@ -205,11 +209,19 @@ public class Main {
 	}
 	
 	static void VerboseHuffmanC(String inFileName, String outFileName, int maxWordLength) throws UnsupportedEncodingException {
+		if(maxWordLength > 255) {
+			System.out.println("Maximum word length cannot exceed 255!");
+			return;
+		} else if (maxWordLength < 1) {
+			System.out.println("Maximum word length cannot be under 1!");
+			return;
+		}
 		// Helps keep track of what goes where.
 		ArrayList<Word> data = new ArrayList<Word>();
 		HashMap<String, Word> map = new HashMap<String, Word>();
 		Word top;
 		// A word here is defined as a sequence of bytes.
+		int longestWordLength = 0;
 		int treeSize = 1;
 		// Get character data from input file.
 		HashMap<String, Integer> words = new HashMap<String, Integer>();
@@ -254,7 +266,7 @@ public class Main {
 		
 		// If necessary, find a free byte in the text that will be used to represent null.
 		int charCount = 1;
-		while(full) {
+		while(full && charCount < 17) {
 			byte[] test = new byte[charCount];
 			// Set default value.
 			for(int j = 0; j < charCount; j++) {
@@ -273,6 +285,11 @@ public class Main {
 				}
 			}
 			charCount++;
+		}
+		
+		if(full) {
+			System.out.println("Could not find suitable byte to replace null!");
+			return;
 		}
 		
 		// Convert byte sequence data into sorted array.
@@ -314,6 +331,9 @@ public class Main {
 				}
 			}
 			if(newValue) {
+				if(val.key.length > longestWordLength) {
+					longestWordLength = val.key.length;
+				}
 				dataQueue.add(val);
 			}
 		}
@@ -343,7 +363,8 @@ public class Main {
 		//PrintTree(top);
 		
 		// Encode tree into byte array using frequency tree.
-		byte[] head = WordTreeToBytes(treeSize, top, nullBytes);
+		int bitsPerWord = (int) (1 + Math.log(longestWordLength) / Math.log(2));
+		byte[] head = WordTreeToBytes(treeSize, top, nullBytes, bitsPerWord);
 		
 		ArrayList<Byte> body = new ArrayList<Byte>();
 		Byte curByte = 0;
@@ -378,16 +399,21 @@ public class Main {
 		if(index != 8) {
 			body.add(curByte);
 		}
-
-		byte[] out = new byte[1+nullBytes.length+head.length+body.size()];
-		// Store information about how many filler bits exist at the end of the file.
-		out[0] = (byte)((7-index) << 5);
-		for(int i = 0; i < nullBytes.length; i++) {
-			out[i+1] = nullBytes[i];
-		}
 		
 		// Assemble final output.
-		index = 1+nullBytes.length;
+		index = 2 + nullBytes.length;
+		byte[] out = new byte[index+head.length+body.size()];
+		// Store information about how many filler bits exist at the end of the file in first 4 bits.
+		out[0] = (byte)((7-index) << 5);
+		// Store how many bytes represent null in the remaining bits.
+		out[0] = (byte) (out[0] & (nullBytes.length-1));
+		// Store now many bits will be used to represent word length.
+		out[1] = (byte) (bitsPerWord-1);
+		// Store nullbytes in third byte and onwards.
+		for(int i = 0; i < nullBytes.length; i++) {
+			out[i+2] = nullBytes[i];
+		}
+		
 		for(byte h : head) {
 			out[index++] = h;
 		}
@@ -404,6 +430,138 @@ public class Main {
 		catch (Exception ex) {
 			ex.printStackTrace();
 		}
+	}
+	
+	static void VerboseHuffmanD(String inFileName, String outFileName) {
+		byte[] bytes;
+		try {
+			bytes = ReadFile(inFileName);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return;
+		}
+		
+		Word top;
+		
+		// Mask off first 5 bits to get amount of filler bits at the end of file.
+		byte fillerBits = (byte)((bytes[0] & 224) >> 5);
+		// Get null byte information.
+		Byte nullBytes[] = new Byte[(bytes[0] & 15)+1];
+		// Get how many bits represent one byte sequence length in size flag.
+		int bitsPerWord = bytes[1]+1;
+		// Get how many bits represent the length of a word.
+		for(int i = 0; i < nullBytes.length; i++) {
+			nullBytes[i] = bytes[2+i];
+		}
+		
+		// Reassemble frequency tree.
+		int cursor = 2+nullBytes.length;
+		Queue<Word> queue = new LinkedList<Word>();
+		
+		int bitCursor = 8-bitsPerWord;
+		int bitMask = (2 << (bitsPerWord-1))-1;
+		int flagIndex = cursor++;
+		byte flag = bytes[flagIndex];
+		int wordSize = (flag >> bitCursor)+1;
+		Byte word[] = new Byte[wordSize];
+		for(int i = 0; i < wordSize; i++) {
+			word[i] = bytes[cursor++];
+		}
+		top = new Word(word);
+		queue.add(top);
+		
+		while(!queue.isEmpty()) {
+			Word val = queue.poll();
+			if(CompareArrays(val.key, nullBytes)) {
+				for(int i = 0; i < Word.childCount; i++) {
+					bitCursor-=bitsPerWord;
+					if(bitCursor < 0) {
+						bitCursor = 8-bitsPerWord;
+						flagIndex = cursor++;
+						flag = bytes[flagIndex];
+					}
+					wordSize = (((flag >> bitCursor)) & bitMask)+1;
+					word = new Byte[wordSize];
+					for(int s = 0; s < wordSize; s++) {
+						word[s] = bytes[cursor++];
+					}
+					val.child[i] = new Word(word);
+					if(CompareArrays(word, nullBytes)) {
+						queue.add(val.child[i]);
+					}
+				}
+			} 
+		}
+		
+		//PrintTree(top);
+		
+		// Decode text and save it as byte array.
+		bitCursor = 7;
+		ArrayList<Byte> text = new ArrayList<Byte>();
+		Word val = top;
+
+		if(CompareArrays(top.key, nullBytes)) {
+			while(cursor < bytes.length-1 || (cursor == bytes.length-1 && (bitCursor > fillerBits || !CompareArrays(val.key, nullBytes)))) {
+				Word child = val.child[(bytes[cursor] >> bitCursor) & 1];
+				if(CompareArrays(val.key, nullBytes) && child != null) {
+					val = child;
+					if(bitCursor > 0) {
+						bitCursor--;
+					} else {
+						bitCursor = 7;
+						cursor++;
+					}
+				} else {
+					for(byte b : val.key) {
+						text.add(b);
+					}
+					val = top;
+				}
+				/*if(cursor == bytes.length-1) {
+					System.out.printf("%d: %s %s added %s\n", cursor, (bitCursor), fillerBits, val.key);
+				}*/
+			}
+		} else {
+			while(cursor < bytes.length-1 || (cursor == bytes.length-1 && bitCursor > fillerBits)) {
+				if(bitCursor > 0) {
+					bitCursor--;
+				} else {
+					bitCursor = 7;
+					cursor++;
+				}
+				for(byte b : val.key) {
+					text.add(b);
+				}
+			}
+		}
+		byte output[] = new byte[text.size()];
+		int index = 0;
+		
+		for(Byte b : text) {
+			output[index++] = b;
+		}
+		
+		// Save to file.
+		try {
+			FileOutputStream out = new FileOutputStream(outFileName);
+			out.write(output);
+			out.close();
+		} 
+		catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	static boolean CompareArrays(Byte[] first, Byte[] second) {
+		if(first.length != second.length) {
+			return false;
+		}
+		for(int i = 0; i < first.length; i++) {
+			if(first[i] != second[i]) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	static void AdaptiveHuffmanC(String inFileName, String outFileName) {
@@ -711,10 +869,15 @@ public class Main {
 	}
 	
 	// Returns Byte array of tree data with words.
-	public static byte[] WordTreeToBytes(int treeSize, Word top, byte nullByte[]) {
-		byte[] out = new byte[treeSize];
+	public static byte[] WordTreeToBytes(int treeSize, Word top, byte nullByte[], int bitsPerWord) {
+		int bytesAfterFlag = 8/bitsPerWord;
+		byte[] out = new byte[(int) (treeSize + 1 + Math.ceil(treeSize/bytesAfterFlag))];
 		int index = 0;
+		int freeBits = 8-bitsPerWord;
+		int flagIndex = index;
 		ArrayList<Word> layer = new ArrayList<Word>();
+		
+		out[index++] = (byte) ((top.key == null) ? ((nullByte.length-1) << freeBits) : ((top.key.length-1) << freeBits));
 		
 		if(top.key == null) {
 			for(byte b : nullByte) {
@@ -737,11 +900,26 @@ public class Main {
 			
 			for(Word v : layer) {
 				if(v.key == null) {
+					if(freeBits < bitsPerWord) {
+						freeBits = 8-bitsPerWord;
+						flagIndex = index++;
+					} else {
+						freeBits -= bitsPerWord;
+					}
+					out[flagIndex] = (byte) (out[flagIndex] | ((nullByte.length-1) << freeBits));
 					for(byte b : nullByte) {
 						out[index++] = b;
 					}
 				}else {
+					if(freeBits < bitsPerWord) {
+						freeBits = 8-bitsPerWord;
+						flagIndex = index++;
+					} else {
+						freeBits -= bitsPerWord;
+					}
+					out[flagIndex] = (byte) (out[flagIndex] | ((v.key.length-1) << freeBits));
 					for(byte b : v.key) {
+						//System.out.println(freeBits + ": " + v.key.length + " -> " + out[flagIndex]);
 						out[index++] = b;
 					}
 				}
@@ -807,13 +985,13 @@ public class Main {
 		ArrayList<Word> layer = new ArrayList<Word>();
 		
 		if(first.key == null) {
-			System.out.println(first.key);
+			System.out.println("[0]");
 		} else {
 			System.out.print("[");
 			for(int i = 0; i < first.key.length; i++) {
 				System.out.print(first.key[i] + ",");
 			}
-			System.out.println("[");
+			System.out.println("]");
 		}
 		
 		for(Word child : first.child) {
@@ -828,7 +1006,7 @@ public class Main {
 			
 			for(Word v : layer) {
 				if(v.key == null) {
-					System.out.print(v.key);
+					System.out.print("[0]");
 				} else {
 					System.out.print("[");
 					for(int i = 0; i < v.key.length; i++) {
@@ -909,7 +1087,7 @@ public class Main {
 				if (buf1[i] != buf2[i]) {
 					f1.close();
 					f2.close();
-					System.out.printf("Value should have been %d, instead was %d\n", buf1[i], buf2[i]);
+					System.out.printf("Value at %d should have been %d, instead was %d\n", i, buf1[i], buf2[i]);
 					return false;
 				}
 					
