@@ -102,7 +102,7 @@ public class Main {
 		String fileName, outFileName, firstFile, secondFile;
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("Testing Verbose Huffman Coding...");
+		/*System.out.println("Testing Verbose Huffman Coding...");
 		try {
 			System.out.print("Testing encoding... ");
 			long start = System.nanoTime();
@@ -116,7 +116,7 @@ public class Main {
 			
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
-		}
+		}*/
 		
 		loop: while (true) {
 			
@@ -160,36 +160,7 @@ public class Main {
 				about();
 				break;
 			case "test":
-				File testFolder = new File("tests");
-				String failed = "";
-				double totalAvg = 0;
-				int count = 0;
-				for (File testGroup : testFolder.listFiles()) {
-					System.out.println("-------------------------------------------------------------------");
-					System.out.printf("[Doing tests from %s]\n", testGroup.getName());
-					double avg = 0;
-					for(File t : testGroup.listFiles()) {
-						Double rez = test(t.getPath(), "results/" + t.getParentFile().getName() + "/" + t.getName());
-						if(rez != null) {
-							avg += rez;
-							totalAvg += rez;
-							count++;
-						} else {
-							failed += t.getPath() + "\n";
-						}
-					}
-					System.out.printf("Average score: %.1f%%\n", avg/testGroup.listFiles().length);
-			    }
-				System.out.println("-------------------------------------------------------------------");
-				if(count > 0) {
-					System.out.printf("Total average score: %.1f%%\n", totalAvg/count);
-				}
-				System.out.println();
-				if(!failed.equals("")) {
-					System.out.printf("Tests failed: \n%s\n", failed);
-				} else {
-					System.out.printf("All test completed successfully!");
-				}
+				test();
 				break;
 			case "-e":
 			case "e":
@@ -1102,14 +1073,45 @@ public class Main {
 		}
 	}
 	
-	static Double test(String fileName, String outFileName) {
-		comp(fileName, "temp.dat"); 
-		decomp("temp.dat", outFileName);
-		if(!equal(fileName, outFileName)) {
-			System.out.println("Test Failed!");
-			return null;
+	static void test() {
+		File testFolder = new File("tests");
+		String failed = "";
+		double totalAvg = 0;
+		int count = 0;
+		for (File testGroup : testFolder.listFiles()) {
+			System.out.println("-------------------------------------------------------------------");
+			System.out.printf("[Doing tests from %s]\n", testGroup.getName());
+			double avg = 0;
+			for(File t : testGroup.listFiles()) {
+				String fileName = t.getPath();
+				String outFileName = "results/" + t.getParentFile().getName() + "/" + t.getName();
+				comp(fileName, "temp.dat"); 
+				decomp("temp.dat", outFileName);
+				if(!equal(fileName, outFileName)) {
+					System.out.println("Test Failed!");
+					continue;
+				}
+				Double rez = eavluate(fileName, "temp.dat");
+				if(rez != null) {
+					avg += rez;
+					totalAvg += rez;
+					count++;
+				} else {
+					failed += t.getPath() + "\n";
+				}
+			}
+			System.out.printf("Average score: %.1f%%\n", avg/testGroup.listFiles().length);
+	    }
+		System.out.println("-------------------------------------------------------------------");
+		if(count > 0) {
+			System.out.printf("Total average score: %.1f%%\n", totalAvg/count);
 		}
-		return eavluate(fileName, "temp.dat");
+		System.out.println();
+		if(!failed.equals("")) {
+			System.out.printf("Tests failed: \n%s\n", failed);
+		} else {
+			System.out.printf("All test completed successfully!");
+		}
 	}
 	
 	public static void about() {
