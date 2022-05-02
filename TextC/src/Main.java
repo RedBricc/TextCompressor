@@ -102,22 +102,6 @@ public class Main {
 		String fileName, outFileName, firstFile, secondFile;
 		Scanner sc = new Scanner(System.in);
 		
-		/*System.out.println("Testing Verbose Huffman Coding...");
-		try {
-			System.out.print("Testing encoding... ");
-			long start = System.nanoTime();
-			VerboseHuffmanC("tests/html/File1.html", "out.dat", 2);
-			System.out.println(System.nanoTime() - start + "ns");
-			start = System.nanoTime();
-			System.out.print("Testing decoding... ");
-			VerboseHuffmanD("out.dat", "test.html");
-			System.out.println(System.nanoTime() - start + "ns");
-			System.out.println("Checking if equal..." + equal("tests/html/File1.html", "test.html"));
-			
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}*/
-		
 		loop: while (true) {
 			
 			choiseStr = sc.next();
@@ -128,14 +112,14 @@ public class Main {
 				fileName = sc.next();
 				System.out.print("archive name: ");
 				outFileName = sc.next();
-				comp(fileName, outFileName);
+				comp(fileName, outFileName, 1);
 				break;
 			case "decomp":
 				System.out.print("archive name: ");
 				fileName = sc.next();
 				System.out.print("file name: ");
 				outFileName = sc.next();
-				decomp(fileName, outFileName);
+				decomp(fileName, outFileName, 1);
 				break;
 			case "size":
 				System.out.print("file name: ");
@@ -160,7 +144,12 @@ public class Main {
 				about();
 				break;
 			case "test":
-				test();
+				System.out.println("Select compression method.");
+				System.out.println("1. Deflate");
+				System.out.println("2. Adaptive Huffman");
+				System.out.println("3. Word Based Huffman");
+				System.out.println("4. LZSS");
+				test(sc.nextInt()-1);
 				break;
 			case "-e":
 			case "e":
@@ -171,12 +160,50 @@ public class Main {
 		}
 	}
 
-	public static void comp(String inFileName, String outFileName) {
-		AdaptiveHuffmanC(inFileName, outFileName);
+	public static void comp(String inFileName, String outFileName, int method) {
+		switch(method) {
+			case 0:
+				System.out.println("Deflate algorithm isn't implemented yet!");
+				break;
+			case 1:
+				AdaptiveHuffmanC(inFileName, outFileName);
+				break;
+			case 2:
+				try {
+					VerboseHuffmanC(inFileName, outFileName, 3);
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+				break;
+			case 3:
+				System.out.println("LZSS algorithm isn't implemented yet!");
+				break;
+			default:
+				System.out.println("No algorithm with this number exists!");
+		}
 	}
 	
-	public static void decomp(String inFileName, String outFileName) {
-		AdaptiveHuffmanD(inFileName, outFileName);
+	public static void decomp(String inFileName, String outFileName, int method) {
+		switch(method) {
+		case 0:
+			System.out.println("Deflate algorithm isn't implemented yet!");
+			break;
+		case 1:
+			AdaptiveHuffmanD(inFileName, outFileName);
+			break;
+		case 2:
+			try {
+				VerboseHuffmanD(inFileName, outFileName);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			break;
+		case 3:
+			System.out.println("LZSS algorithm isn't implemented yet!");
+			break;
+		default:
+			System.out.println("No algorithm with this number exists!");
+	}
 	}
 	
 	static void VerboseHuffmanC(String inFileName, String outFileName, int maxWordLength) throws UnsupportedEncodingException {
@@ -189,7 +216,7 @@ public class Main {
 		}
 		// Helps keep track of what goes where.
 		ArrayList<Word> data = new ArrayList<Word>();
-		HashMap<String, Word> map = new HashMap<String, Word>();
+		HashMap<String, Word> map1 = new HashMap<String, Word>();
 		Word top;
 		// A word here is defined as a sequence of bytes.
 		int longestWordLength = 0;
@@ -209,6 +236,7 @@ public class Main {
 		boolean full = nullFound;
 		
 		// Save all byte sequences of length 1 to maxWordLength and count how many times they're used.
+		// TODO: Add curated words, so no expensive sorting is necessary later.
 		for(int wordSize = 1; wordSize <= maxWordLength; wordSize++) {
 			for (int curByte = 0; curByte < bytes.length; curByte++) {
 				byte word[] = new byte[wordSize];
@@ -274,12 +302,14 @@ public class Main {
 			while(index < data.size() && data.get(index).value < val.value) {
 				index++;
 			}
-			val.compareValue = false;
+			//val.compareValue = false;
 			data.add(index, val);
-			map.put(new String(e.getKey().getBytes("ISO-8859-1"), "ISO-8859-1"), data.get(index));
+			map1.put(e.getKey(), data.get(index));
 		}
 		
 		// Remove words that are subsets of other words.
+		// TODO : Remove this! If words are curated, there is no need for later pruning.
+		/*HashMap<String, Word> map2 = new HashMap<String, Word>();
 		byte found[] = new byte[bytes.length];
 		PriorityQueue<Word> wordQueue = new PriorityQueue<Word>(data);	
 		PriorityQueue<Word> dataQueue = new PriorityQueue<Word>();
@@ -306,8 +336,16 @@ public class Main {
 					longestWordLength = val.key.length;
 				}
 				dataQueue.add(val);
+				byte[] temp = new byte[val.key.length];
+				int i = 0;
+				for(byte b : val.key) {
+					temp[i++] = b;
+				}
+				map2.put(new String(temp, "ISO-8859-1"), val);
 			}
-		}
+		}*/
+		PriorityQueue<Word> dataQueue = new PriorityQueue<Word>(data);
+		longestWordLength = 2;
 		
 		// Convert sorted array into tree of values. The largest values are at the top.
 		Word c[] = new Word[] {dataQueue.peek(), dataQueue.peek()};
@@ -340,9 +378,10 @@ public class Main {
 		ArrayList<Byte> body = new ArrayList<Byte>();
 		Byte curByte = 0;
 		int index = 0;
-		for(int i = 0; i < bytes.length;) {
+		int size = (maxWordLength < bytes.length) ? maxWordLength : (bytes.length);
+		for(int i = 0; i < bytes.length;i+=size+1) {
 			// Find the longest possible byte sequence.
-			int size = (i+maxWordLength < bytes.length) ? maxWordLength : (bytes.length - i);
+			size = (i+maxWordLength < bytes.length) ? maxWordLength : (bytes.length - i);
 			byte target[];
 			do {
 				target = new byte[size--];
@@ -353,10 +392,9 @@ public class Main {
 					System.out.printf("Something went wrong in the encoding stage at byte: %d [%d]\n", i, bytes[i]);
 					return;
 				}
-			} while(!map.containsKey(new String(target, "ISO-8859-1")));
-			
+			} while(!map1.containsKey(new String(target, "ISO-8859-1")));
 			// Encode byte sequence based on it's location in the tree.
-			for(byte bit : GetWordPath(map, new String(target, "ISO-8859-1"))) {
+			for(byte bit : GetWordPath(map1, new String(target, "ISO-8859-1"))) {
 				curByte = (byte) (curByte | (bit << (7-(index++))));
 				if(index >= 8) {
 					body.add(curByte);
@@ -364,20 +402,20 @@ public class Main {
 					index = 0;
 				}
 			}
-			
-			i+=size+1;
 		}
 		if(index != 8) {
 			body.add(curByte);
 		}
+		int fillerBits = 7-index;
+		//System.out.println("Filler:" + fillerBits);
 		
 		// Assemble final output.
 		index = 2 + nullBytes.length;
 		byte[] out = new byte[index+head.length+body.size()];
 		// Store information about how many filler bits exist at the end of the file in first 4 bits.
-		out[0] = (byte)((7-index) << 5);
+		out[0] = (byte)((fillerBits) << 5);
 		// Store how many bytes represent null in the remaining bits.
-		out[0] = (byte) (out[0] & (nullBytes.length-1));
+		out[0] = (byte) (out[0] | (nullBytes.length-1));
 		// Store now many bits will be used to represent word length.
 		out[1] = (byte) (bitsPerWord-1);
 		// Store nullbytes in third byte and onwards.
@@ -387,10 +425,12 @@ public class Main {
 		
 		for(byte h : head) {
 			out[index++] = h;
-		}
+			//System.out.print(h + " ");
+		}//System.out.println();
 		for(byte b : body) {
 			out[index++] = b;
-		}
+			//System.out.print(b + " ");
+		}//System.out.println();
 		
 		// Save to file.
 		try {
@@ -403,7 +443,7 @@ public class Main {
 		}
 	}
 	
-	static void VerboseHuffmanD(String inFileName, String outFileName) {
+	static void VerboseHuffmanD(String inFileName, String outFileName) throws UnsupportedEncodingException {
 		byte[] bytes;
 		try {
 			bytes = ReadFile(inFileName);
@@ -413,7 +453,7 @@ public class Main {
 		}
 		
 		Word top;
-		
+		//System.out.println("First byte: " + bytes[0]);
 		// Mask off first 5 bits to get amount of filler bits at the end of file.
 		byte fillerBits = (byte)((bytes[0] & 224) >> 5);
 		// Get null byte information.
@@ -464,7 +504,8 @@ public class Main {
 			} 
 		}
 		
-		//PrintTree(top);
+		//System.out.println("Filler: " + fillerBits);
+		//PrintTree(top, nullBytes);
 		
 		// Decode text and save it as byte array.
 		bitCursor = 7;
@@ -472,6 +513,7 @@ public class Main {
 		Word val = top;
 
 		if(CompareArrays(top.key, nullBytes)) {
+			//System.out.print(bytes[cursor] + " ");
 			while(cursor < bytes.length-1 || (cursor == bytes.length-1 && (bitCursor > fillerBits || !CompareArrays(val.key, nullBytes)))) {
 				Word child = val.child[(bytes[cursor] >> bitCursor) & 1];
 				if(CompareArrays(val.key, nullBytes) && child != null) {
@@ -481,11 +523,15 @@ public class Main {
 					} else {
 						bitCursor = 7;
 						cursor++;
+						//System.out.print(bytes[cursor] + " ");
 					}
 				} else {
+					byte[] temp = new byte[val.key.length];
+					int index = 0;
 					for(byte b : val.key) {
 						text.add(b);
-					}
+						temp[index++] = b;
+					}//System.out.println(new String(temp, "ISO-8859-1"));
 					val = top;
 				}
 				/*if(cursor == bytes.length-1) {
@@ -841,22 +887,20 @@ public class Main {
 	
 	// Returns Byte array of tree data with words.
 	public static byte[] WordTreeToBytes(int treeSize, Word top, byte nullByte[], int bitsPerWord) {
-		int bytesAfterFlag = 8/bitsPerWord;
-		byte[] out = new byte[(int) (treeSize + 1 + Math.ceil(treeSize/bytesAfterFlag))];
-		int index = 0;
+		ArrayList<Byte> out = new ArrayList<Byte>();
 		int freeBits = 8-bitsPerWord;
-		int flagIndex = index;
+		int flagIndex = 0;
 		ArrayList<Word> layer = new ArrayList<Word>();
 		
-		out[index++] = (byte) ((top.key == null) ? ((nullByte.length-1) << freeBits) : ((top.key.length-1) << freeBits));
+		out.add((byte) ((top.key == null) ? ((nullByte.length-1) << freeBits) : ((top.key.length-1) << freeBits)));
 		
 		if(top.key == null) {
 			for(byte b : nullByte) {
-				out[index++] = b;
+				out.add(b);
 			}
 		}else {
 			for(byte b : top.key) {
-				out[index++] = b;
+				out.add(b);
 			}
 		}
 		
@@ -873,25 +917,27 @@ public class Main {
 				if(v.key == null) {
 					if(freeBits < bitsPerWord) {
 						freeBits = 8-bitsPerWord;
-						flagIndex = index++;
+						flagIndex = out.size();
+						out.add((byte) 0);
 					} else {
 						freeBits -= bitsPerWord;
 					}
-					out[flagIndex] = (byte) (out[flagIndex] | ((nullByte.length-1) << freeBits));
+					out.set(flagIndex, (byte) (out.get(flagIndex) | ((nullByte.length-1) << freeBits)));
 					for(byte b : nullByte) {
-						out[index++] = b;
+						out.add(b);
 					}
 				}else {
 					if(freeBits < bitsPerWord) {
 						freeBits = 8-bitsPerWord;
-						flagIndex = index++;
+						flagIndex = out.size();
+						out.add((byte) 0);
 					} else {
 						freeBits -= bitsPerWord;
 					}
-					out[flagIndex] = (byte) (out[flagIndex] | ((v.key.length-1) << freeBits));
+					out.set(flagIndex, (byte) (out.get(flagIndex) | ((v.key.length-1) << freeBits)));
 					for(byte b : v.key) {
 						//System.out.println(freeBits + ": " + v.key.length + " -> " + out[flagIndex]);
-						out[index++] = b;
+						out.add(b);
 					}
 				}
 				
@@ -904,7 +950,13 @@ public class Main {
 			layer = newLayer;
 		}
 		
-		return out;
+		byte output[] = new byte[out.size()];
+		int index = 0;
+		for(byte b : out) {
+			output[index++] = b;
+		}
+		
+		return output;
 	}
 	
 	// Prints contents of data array.
@@ -952,17 +1004,26 @@ public class Main {
 			layer = newLayer;
 		}
 	}
-	public static void PrintTree(Word first) {
+	public static void PrintTree(Word first, Byte[] nullBytes) throws UnsupportedEncodingException {
 		ArrayList<Word> layer = new ArrayList<Word>();
 		
-		if(first.key == null) {
+		if(CompareArrays(first.key, nullBytes)) {
 			System.out.println("[0]");
 		} else {
-			System.out.print("[");
+			/*System.out.print("[");
 			for(int i = 0; i < first.key.length; i++) {
-				System.out.print(first.key[i] + ",");
+				System.out.print(first.key[i]);
+				if(i != first.key.length-1) {
+					System.out.print(",");
+				}
 			}
-			System.out.println("]");
+			System.out.println("]");*/
+			byte[] temp = new byte[first.key.length];
+			int i = 0;
+			for(byte b : first.key) {
+				temp[i++] = b;
+			}
+			System.out.printf("[%s]\n", new String(temp, "ISO-8859-1"));
 		}
 		
 		for(Word child : first.child) {
@@ -976,10 +1037,10 @@ public class Main {
 			
 			
 			for(Word v : layer) {
-				if(v.key == null) {
+				if(CompareArrays(v.key, nullBytes)) {
 					System.out.print("[0]");
 				} else {
-					System.out.print("[");
+					/*System.out.print("[");
 					for(int i = 0; i < v.key.length; i++) {
 						System.out.print(v.key[i]);
 						if(i+1 == v.key.length) {
@@ -987,7 +1048,13 @@ public class Main {
 						} else {
 							System.out.print(",");
 						}
+					}*/
+					byte[] temp = new byte[v.key.length];
+					int i = 0;
+					for(byte b : v.key) {
+						temp[i++] = b;
 					}
+					System.out.printf("[%s]", new String(temp, "ISO-8859-1"));
 				}
 				
 				if(index%2==0) {
@@ -1073,7 +1140,7 @@ public class Main {
 		}
 	}
 	
-	static void test() {
+	static void test(int method) {
 		File testFolder = new File("tests");
 		String failed = "";
 		double totalAvg = 0;
@@ -1085,8 +1152,8 @@ public class Main {
 			for(File t : testGroup.listFiles()) {
 				String fileName = t.getPath();
 				String outFileName = "results/" + t.getParentFile().getName() + "/" + t.getName();
-				comp(fileName, "temp.dat"); 
-				decomp("temp.dat", outFileName);
+				comp(fileName, "temp.dat", method); 
+				decomp("temp.dat", outFileName, method);
 				if(!equal(fileName, outFileName)) {
 					System.out.println("Test Failed!");
 					continue;
