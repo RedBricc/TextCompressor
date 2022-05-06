@@ -14,6 +14,7 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.Map.Entry;
+import java.util.LinkedList;
 
 //Stores key and value pair with node functionality for implementing a binary tree.
 class Value implements Comparable<Value> {
@@ -117,8 +118,6 @@ public class Main {
 		String choiseStr;
 		String fileName, outFileName, firstFile, secondFile;
 		Scanner sc = new Scanner(System.in);
-		
-		test(3);
 		
 		loop: while (true) {
 			
@@ -292,7 +291,8 @@ public class Main {
 		// Iterate through word map and merge recurring byte sequences.
 		int colabGain2 = 0, colabGain3 = 0, colabGain5 = 0;
 		int flagCount = (int) Math.ceil(bytes.length/8);
-		long look = 0, check1 = 0, check2 = 0, check3 = 0, start = System.nanoTime();
+		long look = 0, check1 = 0, check2 = 0, check3 = 0, check4 = 0, start = System.nanoTime();
+		LinkedList<byte[]> wordList = new LinkedList<byte[]>();
 		while(!queue.isEmpty()) {
 			Word val = queue.poll();
 			//long start = System.nanoTime();
@@ -424,14 +424,11 @@ public class Main {
 				}
 			}
 		}
-		System.out.println("Looking took: " + look/1000000000 + "s");
-		System.out.println("Second part update took: " + check1/1000000000 + "s");
-		System.out.println("Start location update took: " + check2/1000000000 + "s");
-		System.out.println("First part update took: " + check3/1000000000 + "s");
 		
 		// Check if all words can be properly encoded and make word map.
 		HashMap<String, Integer> wordMap = new HashMap<String, Integer>();
 		int size;
+		start = System.nanoTime();
 		for(int i = 0; i < bytes.length; i += size+1) {
 			size = (i+longestWordLength < bytes.length) ? longestWordLength : (bytes.length - i);
 			byte target[];
@@ -445,6 +442,7 @@ public class Main {
 					target[a] = bytes[i+a];
 				}
 			} while(!words.containsKey(new String(target, "ISO-8859-1")));
+			wordList.add(target);
 			// Use String as wrapper for byte array as arrays can't be hashed.
 			if(wordMap.containsKey(new String(target, "ISO-8859-1"))) {
 				wordMap.merge(new String(target, "ISO-8859-1"), 1, Integer::sum);
@@ -452,10 +450,18 @@ public class Main {
 				wordMap.put(new String(target, "ISO-8859-1"), 1);
 			}
 		}
+		check4 = System.nanoTime()-start;
+		
+		System.out.println("Looking took: " + look/1000000000 + "s");
+		System.out.println("Second part update took: " + check1/1000000000 + "s");
+		System.out.println("Start location update took: " + check2/1000000000 + "s");
+		System.out.println("First part update took: " + check3/1000000000 + "s");
+		System.out.println("Double check took: " + check4/1000000000 + "s");
 		
 		// If necessary, find a free byte in the text that will be used to represent null.
 		int charCount = 1;
 		boolean full = nullFound;
+		start = System.nanoTime();
 		while(full && charCount < 17) {
 			byte[] test = new byte[charCount];
 			// Test all possible values to find the smallest free one.
@@ -477,8 +483,10 @@ public class Main {
 			System.out.println("Could not find suitable byte to replace null!");
 			return;
 		}
+		check1 = System.nanoTime()-start;
 	
 		// Convert byte sequence data into sorted array.
+		start = System.nanoTime();
 		HashMap<String, Word> map = new HashMap<String, Word>();
 		for(Entry<String, Integer> e : wordMap.entrySet()) {
 			Byte Bytes[] = new Byte[e.getKey().getBytes("ISO-8859-1").length];
@@ -518,6 +526,7 @@ public class Main {
 		}
 		
 		top = dataQueue.poll();
+		check2 = System.nanoTime()-start;
 		//PrintTree(top, new Byte[] {0});
 		
 		// Encode tree into byte array using frequency tree.
@@ -527,21 +536,10 @@ public class Main {
 		ArrayList<Byte> body = new ArrayList<Byte>();
 		Byte curByte = 0;
 		int index = 0;
-		size = (longestWordLength < bytes.length) ? longestWordLength : (bytes.length);
-		for(int i = 0; i < bytes.length;i+=size+1) {
-			// Find the longest possible byte sequence.
-			size = (i+longestWordLength < bytes.length) ? longestWordLength : (bytes.length - i);
-			byte target[];
-			do {
-				target = new byte[size--];
-				for(int a = 0; a < target.length; a++) {
-					target[a] = bytes[i+a];
-				}
-				if(size < 0) {
-					System.out.printf("Could not find value [%s] in tree at byte: %d [%d]\n", new String(new byte[] {bytes[i]}, "ISO-8859-1"), i, bytes[i]);
-					break;
-				}
-			} while(!map.containsKey(new String(target, "ISO-8859-1")));
+		start = System.nanoTime();
+		while(!wordList.isEmpty()) {
+			// Get the longest possible byte sequence.
+			byte target[] = wordList.poll();
 			// Encode byte sequence based on it's location in the tree.
 			for(byte bit : GetWordPath(map, new String(target, "ISO-8859-1"))) {
 				curByte = (byte) (curByte | (bit << (7-(index++))));
@@ -554,7 +552,8 @@ public class Main {
 		}
 	
 		body.add(curByte);
-		
+		check3 = System.nanoTime()-start;
+		start = System.nanoTime();
 		int fillerBits = 7-index;
 		
 		// Assemble final output.
@@ -577,6 +576,12 @@ public class Main {
 		for(byte b : body) {
 			out[index++] = b;
 		}
+		check4 = System.nanoTime()-start;
+		
+		System.out.println("Null took: " + check1/1000000000 + "s");
+		System.out.println("sorting took: " + check2/1000000000 + "s");
+		System.out.println("Building tree took: " + check3/1000000000 + "s");
+		System.out.println("File-prep took: " + check4/1000000000 + "s");
 		
 		// Save to file.
 		try {
@@ -1326,6 +1331,7 @@ public class Main {
 		}
 		
 		System.out.println("-------------------------------------------------------------------");
+		long fullTime = System.nanoTime();
 		for (File testGroup : testFolders) {
 			System.out.printf("[Doing tests from %s]\n", testGroup.getName());
 			double avg = 0;
@@ -1356,6 +1362,7 @@ public class Main {
 			System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - -");
 	    }
 		System.out.println("-------------------------------------------------------------------");
+		System.out.println("Total time taken: " + (System.nanoTime()-fullTime)/1000000000 + "s");
 		if(count > 0) {
 			System.out.printf("Total average score: %.1f%%\n", totalAvg/count);
 		}
