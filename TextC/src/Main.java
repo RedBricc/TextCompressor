@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -99,6 +100,16 @@ class Word implements Comparable<Word> {
 	public int compareTo(Word val) {
 		return reverse ? val.value.compareTo(value) : value.compareTo(val.value);
  }
+}
+
+class HashSetPair {
+	HashSet<Integer> firstSet;
+	HashSet<Integer> secondSet;
+	
+	public HashSetPair(HashSet<Integer> first, HashSet<Integer> second) {
+		firstSet = first;
+		secondSet = second;
+	}
 }
 
 public class Main {
@@ -243,7 +254,7 @@ public class Main {
 		byte[] nullBytes = new byte[] {0};
 		
 		// Curate words from the text by looking for byte sequences that are efficient to save.
-		HashMap<String, ArrayList<Integer>> words = new HashMap<String, ArrayList<Integer>>();
+		HashMap<String, HashSet<Integer>> words = new HashMap<String, HashSet<Integer>>();
 		HashMap<Integer, String> wordLocations = new HashMap<Integer, String>();
 		// Fill list with byte values from file.
 		int bytePos = 0;
@@ -251,12 +262,12 @@ public class Main {
 		for(byte b : bytes) {
 			// Use String as wrapper for byte array as arrays can't be hashed.
 			String key = new String(new byte[] {b}, "ISO-8859-1");
-			ArrayList<Integer> posArray;
+			HashSet<Integer> posArray;
 			wordLocations.put(bytePos, key);
 			if(words.containsKey(key)) {
 				posArray = words.get(key);
 			}else {
-				posArray = new ArrayList<Integer>();
+				posArray = new HashSet<Integer>();
 				if(b == 0) {
 					nullFound = true;
 				}
@@ -269,10 +280,10 @@ public class Main {
 			posArray.add(bytePos++);
 			words.put(key, posArray);
 		}
-		System.out.println("Words: " + words.size());
+		System.out.println("Unique characters: " + words.size());
 		// Fill priority queue. This will be used to iterate through the word map.
 		PriorityQueue<Word> queue = new PriorityQueue<Word>();
-		for(Entry<String, ArrayList<Integer>> val : words.entrySet()) {
+		for(Entry<String, HashSet<Integer>> val : words.entrySet()) {
 			Word word = new Word(val.getKey(), val.getValue().size());
 			word.reverse = true;
 			queue.add(word);
@@ -281,12 +292,12 @@ public class Main {
 		// Iterate through word map and merge recurring byte sequences.
 		int colabGain2 = 0, colabGain3 = 0, colabGain5 = 0;
 		int flagCount = (int) Math.ceil(bytes.length/8);
-		long look = 0, check = 0, start = System.nanoTime();
+		long look = 0, check1 = 0, check2 = 0, check3 = 0, start = System.nanoTime();
 		while(!queue.isEmpty()) {
 			Word val = queue.poll();
 			//long start = System.nanoTime();
 			// Create hash map of all possible words that could be created by appending the next word.
-			HashMap<String, ArrayList<Integer>> nextWords = new HashMap<String, ArrayList<Integer>>();
+			HashMap<String, HashSetPair> nextWords = new HashMap<String, HashSetPair>();
 			if (words.get(val.stringValue) == null)
 				continue;
 			for(int index : words.get(val.stringValue)) {
@@ -298,23 +309,23 @@ public class Main {
 					continue;
 				}
 				String key = val.stringValue + wordLocations.get(index + val.stringValue.length());
-				ArrayList<Integer> posArray;
+				HashSetPair posArray;
 				if(nextWords.containsKey(key)) {
 					posArray = nextWords.get(key);
 				}else {
-					posArray = new ArrayList<Integer>();
+					posArray = new HashSetPair(new HashSet<Integer>(), new HashSet<Integer>());
 				}
-				posArray.add(index);
+				posArray.firstSet.add(index);
+				posArray.secondSet.add(index + val.stringValue.length());
 				nextWords.put(key, posArray);
 				look += System.nanoTime()-start;
 			}
 			
 			// Iterate through words and append any worthwhile words.
-			for(Entry<String, ArrayList<Integer>> word : nextWords.entrySet()) {
-				start = System.nanoTime();
+			for(Entry<String, HashSetPair> word : nextWords.entrySet()) {
 				if(words.get(val.stringValue) == null)
 					continue;
-				int count = word.getValue().size();
+				int count = word.getValue().firstSet.size();
 				// It is never efficient to save a word of length 1.
 				if(count < 2) 
 					continue;
@@ -323,11 +334,7 @@ public class Main {
 				
 				if(words.containsKey(word.getKey())) {
 					// word already exists, so append the new indexes to it's index array.
-					System.out.printf("Word %s already exists!", word.getKey());
-					ArrayList<Integer> newI = word.getValue();
-					for(int in : word.getValue()) {
-						newI.add(in);
-					}
+					HashSet<Integer> newI = word.getValue().firstSet;
 					words.put(word.getKey(), newI);
 				} else {
 					// Keep track of how much space could be saved by adding the word as well as the cost of doing so.
@@ -336,8 +343,8 @@ public class Main {
 					Double cost = (double) length;
 					
 					// Amount of bytes compressed
-					gain += ((1 / (1 + Math.log(word.getKey().length() - val.stringValue.length()) / Math.log(2))) * word.getValue().size() * (1+(Math.log(bytes.length+flagCount) / Math.log(2))*(Math.log(1+((word.getValue().size()-min < 0) ? 0 : ((max-word.getValue().size() < 0) ? 1 : (((word.getValue().size()-min)/max))))*10) / Math.log(2))*0.477))
-							+ ((1 / (1 + Math.log(val.stringValue.length()) / Math.log(2))) * word.getValue().size() * (1+(Math.log(bytes.length+flagCount) / Math.log(2))*(Math.log(1+((word.getValue().size()-min < 0) ? 0 : ((max-word.getValue().size() < 0) ? 1 : (((word.getValue().size()-min)/max))))*10) / Math.log(2))*0.477));
+					gain += ((1 / (1 + Math.log(word.getKey().length() - val.stringValue.length()) / Math.log(2))) * word.getValue().secondSet.size() * (1+(Math.log(bytes.length+flagCount) / Math.log(2))*(Math.log(1+((word.getValue().secondSet.size()-min < 0) ? 0 : ((max-word.getValue().secondSet.size() < 0) ? 1 : (((word.getValue().secondSet.size()-min)/max))))*10) / Math.log(2))*0.477))
+							+ ((1 / (1 + Math.log(val.stringValue.length()) / Math.log(2))) * word.getValue().firstSet.size() * (1+(Math.log(bytes.length+flagCount) / Math.log(2))*(Math.log(1+((word.getValue().firstSet.size()-min < 0) ? 0 : ((max-word.getValue().firstSet.size() < 0) ? 1 : (((word.getValue().firstSet.size()-min)/max))))*10) / Math.log(2))*0.477));
 					// Approximation of how much each encoded word takes up.
 					// 1 / LOG(newLWL;2) * COUNT * (1+LOG(TOTAL;2)*LOG(1+VAL*10;2)*0,477)
 					// TODO: find approximation without the value TOTAL.
@@ -383,49 +390,44 @@ public class Main {
 							}
 							longestWordLength = newLWL;
 						}
-						words.put(word.getKey(), word.getValue());
+						words.put(word.getKey(), word.getValue().firstSet);
 						// Remove second part.
+						start = System.nanoTime();
 						String secondPart = word.getKey().substring(val.stringValue.length());
-						if(words.get(secondPart).size() == word.getValue().size()) {
+						if(words.get(secondPart).size() == word.getValue().firstSet.size()) {
 							words.remove(secondPart);
 						} else {
-							ArrayList<Integer> newI = new ArrayList<Integer>();
-							for(int in : words.get(secondPart)) {
-								if(!word.getValue().contains(in - val.stringValue.length())) {
-									newI.add(in);
-								}
-							}
-							words.put(secondPart, newI);
+							words.get(secondPart).removeAll(word.getValue().secondSet);
 						}
+						check1 += System.nanoTime()-start;
+						start = System.nanoTime();
 						// Update start locations.
-						for(int in : word.getValue()) {
+						for(int in : word.getValue().firstSet) {
 							wordLocations.put(in, word.getKey());
 							for(int i = 1; i < word.getKey().length(); i++) {
 								wordLocations.remove(in+i);
 							}
 						}
-						queue.add(new Word(word.getKey(), word.getValue().size()));
+						queue.add(new Word(word.getKey(), word.getValue().firstSet.size()));
+						check2 += System.nanoTime()-start;
+						start = System.nanoTime();
 						// Remove references to parts.
-						if(val.value == word.getValue().size()) {
+						if(val.value == word.getValue().firstSet.size()) {
 							words.remove(val.stringValue);
 						} else {
-							ArrayList<Integer> newI = new ArrayList<Integer>();
-							for(int in : words.get(val.stringValue)) {
-								if(!word.getValue().contains(in)) {
-									newI.add(in);
-								}
-							}
-							words.put(val.stringValue, newI);
+							words.get(val.stringValue).removeAll(word.getValue().firstSet);
 						}
+						check3 += System.nanoTime()-start;
 					}
 					
 					//System.out.println("     Choosing took: " + (System.nanoTime()-start) + "ns");
 				}
-				check += System.nanoTime()-start;
 			}
 		}
 		System.out.println("Looking took: " + look/1000000000 + "s");
-		System.out.println("Checking took: " + check/1000000000 + "s");
+		System.out.println("Second part update took: " + check1/1000000000 + "s");
+		System.out.println("Start location update took: " + check2/1000000000 + "s");
+		System.out.println("First part update took: " + check3/1000000000 + "s");
 		
 		// Check if all words can be properly encoded and make word map.
 		HashMap<String, Integer> wordMap = new HashMap<String, Integer>();
@@ -1284,7 +1286,7 @@ public class Main {
 	}
 	
 	static void test(int method) {
-		File testRoot = new File("tests/artificl");
+		File testRoot = new File("tests");
 		if(testRoot.isFile()) {
 			String fileName = testRoot.getPath();
 			String outFileName = "results/" + testRoot.getParentFile().getName() + "/" + testRoot.getName();
@@ -1333,11 +1335,13 @@ public class Main {
 				String archiveName = "archives/" + t.getParentFile().getName() + "/" + t.getName();
 				long start = System.nanoTime();
 				new File(archiveName).delete();
+				System.out.println("Archiving " + fileName + "...");
 				comp(fileName, archiveName, method); 
-				decomp(archiveName, outFileName, method);
 				long end = System.nanoTime();
+				decomp(archiveName, outFileName, method);
+				System.out.println("Total encding time: " + (end-start)/1000000000 + "s");
 				Double rez = eavluate(fileName, archiveName);
-				System.out.println("Time taken: " + (end-start)/1000000000 + "s");
+				System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - -");
 				if(rez != null && equal(fileName, outFileName)) {
 					avg += rez;
 					totalAvg += rez;
@@ -1349,6 +1353,7 @@ public class Main {
 				}
 			}
 			System.out.printf("Average score: %.1f%%\n", avg/testGroup.listFiles().length);
+			System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - -");
 	    }
 		System.out.println("-------------------------------------------------------------------");
 		if(count > 0) {
