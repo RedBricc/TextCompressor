@@ -1,4 +1,4 @@
-INDEX VERSION 1.131+C:\Files\Java\TextCompressor\.metadata\.plugins\org.eclipse.jdt.core
+INDEX VERSION 1.131+F:\Users\Juris\Desktop\Faili\School\Java\TextCompressor\.metadata\.plugins\org.eclipse.jdt.core
+818051224.index
 1865797976.index
 4118909477.index
-1210658807.index

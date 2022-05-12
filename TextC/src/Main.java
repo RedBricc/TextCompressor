@@ -14,7 +14,6 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.Map.Entry;
-import java.util.LinkedList;
 
 //Stores key and value pair with node functionality for implementing a binary tree.
 class Value implements Comparable<Value> {
@@ -113,14 +112,63 @@ class HashSetPair {
 	}
 }
 
+class IntByteArrPair {
+	int value;
+	byte bytes[];
+	
+	public IntByteArrPair (int v, byte b[]) {
+		value = v;
+		bytes = b;
+	}
+}
+
 public class Main {
+	// TODO: Implement Huffman coding for flag encoding.
+	/*static Value smallFlagTree;
+	static Value mediumFlagTree;
+	static Value largeFlagTree;
+	static Value fullFlagTree;
+	
+	static int smallFlagArray[];
+	static int mediumFlagArray[];
+	static int largeFlagArray[];
+	static int fullFlagArray[];*/
+	
 	public static void main(String[] args) {
+		/*smallFlagArray = new int[] {6558, 725, 2298, 1664, 715, 392, 194, 133, 102, 72, 43, 38, 46, 24, 24, 30, 16, 14, 10, 10, 7, 6, 5, 3, 3, 1, 4, 3, 1, 2, 2, 2, 3, 1, 2,1};
+		mediumFlagArray = new int[] {44626, 4493, 15442, 11388, 4937, 2731, 1509, 973, 714, 520, 375, 281, 288, 163, 150, 181, 97, 82, 62, 57, 37, 30, 23, 21, 17, 7, 19, 14, 13, 8, 9, 8, 15, 3, 7, 4, 3, 1, 2, 1, 2, 1, 2, 3, 1, 1, 2, 2, 1};
+		largeFlagArray = new int[] {151642, 11164, 41998, 36477, 26776, 11844, 7177, 6141, 3915, 1662, 995, 1076, 535, 304, 279, 293, 209, 148, 121, 111, 74, 62, 50, 46, 44, 20, 31, 27, 19, 15, 20, 12, 39, 4, 16, 7, 6, 4, 6, 2, 2, 1, 2, 4, 4, 1, 5, 2, 4, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 13, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 8, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1};
+		fullFlagArray = new int[] {151642, 11164, 41998, 36477, 26776, 11844, 7177, 6141, 3915, 1662, 995, 1076, 535, 304, 279, 293, 209, 148, 121, 111, 74, 62, 50, 46, 44, 20, 31, 27, 19, 15, 20, 12, 39, 4, 16, 7, 6, 4, 6, 2, 2, 1, 2, 4, 4, 1, 5, 2, 4, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 13, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 8, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+		
+		ArrayList<Value> data = new ArrayList<Value>();
+		for(int i = 0; i < smallFlagArray.length; i++) {
+			data.add(new Value((byte)i, smallFlagArray[i]));
+		}
+		PriorityQueue<Value> queue = new PriorityQueue<Value>(data);
+		
+		while(queue.size() > 1) {
+			Value c[] = new Value[Value.childCount];
+			for(int i = 0; i < c.length; i++) {
+				c[i] = queue.poll();
+			}
+			Value parent = new Value(c, Value.childSum(c));
+			
+			// Save parent and side information for path building.
+			for(byte i = 0; i < c.length; i++) {
+				c[i].parent = parent;
+				c[i].side = i;
+			}
+			
+			queue.add(parent);
+		}
+		
+		smallFlagTree = queue.poll();*/
+		
 		String choiseStr;
 		String fileName, outFileName, firstFile, secondFile;
 		Scanner sc = new Scanner(System.in);
 		
 		loop: while (true) {
-			
 			choiseStr = sc.next();
 								
 			switch (choiseStr) {
@@ -188,16 +236,23 @@ public class Main {
 	}
 
 	public static void comp(String inFileName, String outFileName, int method) {
+		byte out[] = null;
+		byte bytes[] = null;
+		try {
+			bytes = ReadFile(inFileName);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		switch(method) {
 			case 1:
 				System.out.println("Deflate algorithm isn't implemented yet!");
 				break;
 			case 2:
-				AdaptiveHuffmanC(inFileName, outFileName);
+				out = AdaptiveHuffmanC(bytes);
 				break;
 			case 3:
 				try {
-					VerboseHuffmanC(inFileName, outFileName);
+					out = VerboseHuffmanC(bytes);
 				} catch (UnsupportedEncodingException e) {
 					e.printStackTrace();
 				}
@@ -207,20 +262,36 @@ public class Main {
 				break;
 			default:
 				System.out.println("No algorithm with this number exists!");
+		}
+		// Save to file.
+		try {
+			FileOutputStream output = new FileOutputStream(outFileName);
+			output.write(out);
+			output.close();
+		} 
+		catch (Exception ex) {
+			ex.printStackTrace();
 		}
 	}
 	
 	public static void decomp(String inFileName, String outFileName, int method) {
+		byte out[] = null;
+		byte bytes[] = null;
+		try {
+			bytes = ReadFile(inFileName);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		switch(method) {
 			case 1:
 				System.out.println("Deflate algorithm isn't implemented yet!");
 				break;
 			case 2:
-				AdaptiveHuffmanD(inFileName, outFileName);
+				out = AdaptiveHuffmanD(bytes, false).bytes;
 				break;
 			case 3:
 				try {
-					VerboseHuffmanD(inFileName, outFileName);
+					out = VerboseHuffmanD(bytes);
 				} catch (UnsupportedEncodingException e) {
 					e.printStackTrace();
 				}
@@ -231,26 +302,25 @@ public class Main {
 			default:
 				System.out.println("No algorithm with this number exists!");
 		}
+		
+		// Save to file.
+		try {
+			FileOutputStream output = new FileOutputStream(outFileName);
+			output.write(out);
+			output.close();
+		} 
+		catch (Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 	
-	static void VerboseHuffmanC(String inFileName, String outFileName) throws UnsupportedEncodingException {
+	static byte[] VerboseHuffmanC(byte[] bytes) throws UnsupportedEncodingException {
 		// Helps keep track of what goes where.
 		ArrayList<Word> data = new ArrayList<Word>();
 		Word top;
 		// A word here is defined as a sequence of bytes.
 		int longestWordLength = 1;
 		int treeSize = 1;
-		// Get character data from input file.
-		Boolean nullFound = false;
-		byte[] bytes;
-		try {
-			bytes = ReadFile(inFileName);
-		} catch (IOException e) {
-			e.printStackTrace();
-			return;
-		}
-		
-		byte[] nullBytes = new byte[] {0};
 		
 		// Curate words from the text by looking for byte sequences that are efficient to save.
 		HashMap<String, HashSet<Integer>> words = new HashMap<String, HashSet<Integer>>();
@@ -267,9 +337,6 @@ public class Main {
 				posArray = words.get(key);
 			}else {
 				posArray = new HashSet<Integer>();
-				if(b == 0) {
-					nullFound = true;
-				}
 			}
 			if(posArray.size() > max) {
 				max = posArray.size();
@@ -279,7 +346,6 @@ public class Main {
 			posArray.add(bytePos++);
 			words.put(key, posArray);
 		}
-		System.out.println("Unique characters: " + words.size());
 		// Fill priority queue. This will be used to iterate through the word map.
 		PriorityQueue<Word> queue = new PriorityQueue<Word>();
 		for(Entry<String, HashSet<Integer>> val : words.entrySet()) {
@@ -289,9 +355,6 @@ public class Main {
 		}
 		
 		// Iterate through word map and merge recurring byte sequences.
-		int colabGain2 = 0, colabGain3 = 0, colabGain5 = 0;
-		int flagCount = (int) Math.ceil(bytes.length/8);
-		long look = 0, check1 = 0, check2 = 0, check3 = 0, check4 = 0, start = System.nanoTime();
 		LinkedList<byte[]> wordList = new LinkedList<byte[]>();
 		while(!queue.isEmpty()) {
 			Word val = queue.poll();
@@ -301,7 +364,6 @@ public class Main {
 			if (words.get(val.stringValue) == null)
 				continue;
 			for(int index : words.get(val.stringValue)) {
-				start = System.nanoTime();
 				if(index + val.stringValue.length() >= bytes.length)
 					continue;
 				// Use String as wrapper for byte array as arrays can't be hashed.
@@ -318,10 +380,10 @@ public class Main {
 				posArray.firstSet.add(index);
 				posArray.secondSet.add(index + val.stringValue.length());
 				nextWords.put(key, posArray);
-				look += System.nanoTime()-start;
 			}
 			
 			// Iterate through words and append any worthwhile words.
+			int flagCount = 1;
 			for(Entry<String, HashSetPair> word : nextWords.entrySet()) {
 				if(words.get(val.stringValue) == null)
 					continue;
@@ -331,6 +393,8 @@ public class Main {
 					continue;
 				int length = word.getKey().length();
 				int newLWL = (length > longestWordLength) ? length : longestWordLength;
+				if(newLWL > 254)
+					continue;
 				
 				if(words.containsKey(word.getKey())) {
 					// word already exists, so append the new indexes to it's index array.
@@ -340,67 +404,33 @@ public class Main {
 					// Keep track of how much space could be saved by adding the word as well as the cost of doing so.
 					int gain = 0;
 					// Word has to be saved in full length inside header.
-					Double cost = (double) length;
+					Double cost = (double) length + 4.307;
 					
 					// Amount of bytes compressed
-					gain += ((1 / (1 + Math.log(word.getKey().length() - val.stringValue.length()) / Math.log(2))) * word.getValue().secondSet.size() * (1+(Math.log(bytes.length+flagCount) / Math.log(2))*(Math.log(1+((word.getValue().secondSet.size()-min < 0) ? 0 : ((max-word.getValue().secondSet.size() < 0) ? 1 : (((word.getValue().secondSet.size()-min)/max))))*10) / Math.log(2))*0.477))
-							+ ((1 / (1 + Math.log(val.stringValue.length()) / Math.log(2))) * word.getValue().firstSet.size() * (1+(Math.log(bytes.length+flagCount) / Math.log(2))*(Math.log(1+((word.getValue().firstSet.size()-min < 0) ? 0 : ((max-word.getValue().firstSet.size() < 0) ? 1 : (((word.getValue().firstSet.size()-min)/max))))*10) / Math.log(2))*0.477));
+					gain += ((1 / (1 + Math.log(word.getKey().length() - val.stringValue.length()) / Math.log(2))) * word.getValue().secondSet.size() * (1+(Math.log(flagCount) / Math.log(2))*(Math.log(1+((word.getValue().secondSet.size()-min < 0) ? 0 : ((max-word.getValue().secondSet.size() < 0) ? 1 : (((word.getValue().secondSet.size()-min)/max))))*10) / Math.log(2))))
+							+ ((1 / (1 + Math.log(val.stringValue.length()) / Math.log(2))) * word.getValue().firstSet.size() * (1+(Math.log(flagCount) / Math.log(2))*(Math.log(1+((word.getValue().firstSet.size()-min < 0) ? 0 : ((max-word.getValue().firstSet.size() < 0) ? 1 : (((word.getValue().firstSet.size()-min)/max))))*10) / Math.log(2))));
 					// Approximation of how much each encoded word takes up.
 					// 1 / LOG(newLWL;2) * COUNT * (1+LOG(TOTAL;2)*LOG(1+VAL*10;2)*0,477)
 					// TODO: find approximation without the value TOTAL.
 					// Where VAL is COUNT normalized to between 0 and 1.
-					cost += (1 / (1 + Math.log(newLWL) / Math.log(2))) * count * (1+(Math.log(bytes.length+flagCount) / Math.log(2))*(Math.log(1+((count-min < 0) ? 0 : ((max-count < 0) ? 1 : (((count-min)/max))))*10) / Math.log(2))*0.477);
-					// Adding words adds one extra null byte to the tree.
-					if(count < words.get(val.stringValue).size()) {
-						cost += 1 / (1 + Math.log(newLWL) / Math.log(2));
-					}
-					// If maxWordLength increases past certain multiples of two, two times more flag bytes are needed.
-					boolean newStep = Math.floor(1 + Math.log(newLWL) / Math.log(2)) > Math.floor(1 + Math.log(longestWordLength) / Math.log(2));
-					int newBitsPerWord = (int) (1 + Math.log(newLWL) / Math.log(2));
-					if(newStep) {
-						if (newBitsPerWord >= 5) {
-							cost += flagCount<<1;
-							gain += colabGain5;
-							colabGain5 += gain;
-						} else if (newBitsPerWord >= 3) {
-							cost += flagCount<<1;
-							gain += colabGain3;
-							colabGain3 += gain;
-						} else if (newBitsPerWord >= 2) {
-							cost += flagCount<<1;
-							gain += colabGain2;
-							colabGain2 += gain;
-						}
-					}
-					//iSystem.out.printf("%d vs %f\n", gain, cost);
+					cost += (1 / (1 + Math.log(newLWL) / Math.log(2))) * count * (1+(Math.log(flagCount) / Math.log(2))*(Math.log(1+((count-min < 0) ? 0 : ((max-count < 0) ? 1 : (((count-min)/max))))*10) / Math.log(2)));
+					// Adding words adds one flag byte.
+					cost++;
 					
 					// Add word if it is worth it.
 					if(gain > cost) {
-						if(newLWL > 255)
-							continue;
-						else if (newLWL > longestWordLength) {
-							if(newStep) {
-								if (newBitsPerWord == 2) {
-									flagCount = flagCount << 1;
-								} else if (newBitsPerWord == 3) {
-									flagCount = flagCount << 1;
-								} else if (newBitsPerWord == 5) {
-									flagCount = flagCount << 1;
-								}
-							}
+						if (newLWL > longestWordLength) {
 							longestWordLength = newLWL;
 						}
+						flagCount++;
 						words.put(word.getKey(), word.getValue().firstSet);
 						// Remove second part.
-						start = System.nanoTime();
 						String secondPart = word.getKey().substring(val.stringValue.length());
 						if(words.get(secondPart).size() == word.getValue().firstSet.size()) {
 							words.remove(secondPart);
 						} else {
 							words.get(secondPart).removeAll(word.getValue().secondSet);
 						}
-						check1 += System.nanoTime()-start;
-						start = System.nanoTime();
 						// Update start locations.
 						for(int in : word.getValue().firstSet) {
 							wordLocations.put(in, word.getKey());
@@ -409,18 +439,13 @@ public class Main {
 							}
 						}
 						queue.add(new Word(word.getKey(), word.getValue().firstSet.size()));
-						check2 += System.nanoTime()-start;
-						start = System.nanoTime();
 						// Remove references to parts.
 						if(val.value == word.getValue().firstSet.size()) {
 							words.remove(val.stringValue);
-						} else {
+						} else if (words.get(val.stringValue) != null) {
 							words.get(val.stringValue).removeAll(word.getValue().firstSet);
 						}
-						check3 += System.nanoTime()-start;
 					}
-					
-					//System.out.println("     Choosing took: " + (System.nanoTime()-start) + "ns");
 				}
 			}
 		}
@@ -428,7 +453,6 @@ public class Main {
 		// Check if all words can be properly encoded and make word map.
 		HashMap<String, Integer> wordMap = new HashMap<String, Integer>();
 		int size;
-		start = System.nanoTime();
 		for(int i = 0; i < bytes.length; i += size+1) {
 			size = (i+longestWordLength < bytes.length) ? longestWordLength : (bytes.length - i);
 			byte target[];
@@ -450,43 +474,8 @@ public class Main {
 				wordMap.put(new String(target, "ISO-8859-1"), 1);
 			}
 		}
-		check4 = System.nanoTime()-start;
-		
-		System.out.println("Looking took: " + look/1000000000 + "s");
-		System.out.println("Second part update took: " + check1/1000000000 + "s");
-		System.out.println("Start location update took: " + check2/1000000000 + "s");
-		System.out.println("First part update took: " + check3/1000000000 + "s");
-		System.out.println("Double check took: " + check4/1000000000 + "s");
-		
-		// If necessary, find a free byte in the text that will be used to represent null.
-		int charCount = 1;
-		boolean full = nullFound;
-		start = System.nanoTime();
-		while(full && charCount < 17) {
-			byte[] test = new byte[charCount];
-			// Test all possible values to find the smallest free one.
-			for(int j = 0; j < charCount; j++) {
-				for(int i = 0; i < 256; i++) {
-					test[j] = (byte) i;
-							
-					if(!wordMap.containsKey(new String(test, "ISO-8859-1"))) {
-						nullBytes = test;
-						full = false;
-						break;
-					}
-				}
-			}
-			charCount++;
-		}
-		
-		if(full) {
-			System.out.println("Could not find suitable byte to replace null!");
-			return;
-		}
-		check1 = System.nanoTime()-start;
 	
 		// Convert byte sequence data into sorted array.
-		start = System.nanoTime();
 		HashMap<String, Word> map = new HashMap<String, Word>();
 		for(Entry<String, Integer> e : wordMap.entrySet()) {
 			Byte Bytes[] = new Byte[e.getKey().getBytes("ISO-8859-1").length];
@@ -518,7 +507,7 @@ public class Main {
 			for(byte i = 0; i < c.length; i++) {
 				c[i].parent = parent;
 				c[i].side = i;
-				byteCount += (c[i].key == null) ? 1 : c[i].key.length;
+				byteCount += (c[i].key == null) ? 0 : c[i].key.length;
 			}
 			
 			dataQueue.add(parent);
@@ -526,17 +515,14 @@ public class Main {
 		}
 		
 		top = dataQueue.poll();
-		check2 = System.nanoTime()-start;
-		//PrintTree(top, new Byte[] {0});
+		//PrintTree(top);
 		
 		// Encode tree into byte array using frequency tree.
-		int bitsPerWord = (int) (1 + Math.log(longestWordLength) / Math.log(2));
-		byte[] head = WordTreeToBytes(treeSize, top, nullBytes, bitsPerWord);
+		byte[] head = WordTreeToBytes(treeSize, top);
 		
 		ArrayList<Byte> body = new ArrayList<Byte>();
 		Byte curByte = 0;
 		int index = 0;
-		start = System.nanoTime();
 		while(!wordList.isEmpty()) {
 			// Get the longest possible byte sequence.
 			byte target[] = wordList.poll();
@@ -552,23 +538,13 @@ public class Main {
 		}
 	
 		body.add(curByte);
-		check3 = System.nanoTime()-start;
-		start = System.nanoTime();
 		int fillerBits = 7-index;
 		
 		// Assemble final output.
-		index = 2 + nullBytes.length;
+		index = 1;
 		byte[] out = new byte[index+head.length+body.size()];
 		// Store information about how many filler bits exist at the end of the file in first 4 bits.
 		out[0] = (byte)((fillerBits) << 5);
-		// Store how many bytes represent null in the remaining bits.
-		out[0] = (byte) (out[0] | (nullBytes.length-1));
-		// Store now many bits will be used to represent word length.
-		out[1] = (byte) (bitsPerWord-1);
-		// Store nullbytes in third byte and onwards.
-		for(int i = 0; i < nullBytes.length; i++) {
-			out[i+2] = nullBytes[i];
-		}
 		
 		for(byte h : head) {
 			out[index++] = h;
@@ -576,57 +552,25 @@ public class Main {
 		for(byte b : body) {
 			out[index++] = b;
 		}
-		check4 = System.nanoTime()-start;
 		
-		System.out.println("Null took: " + check1/1000000000 + "s");
-		System.out.println("sorting took: " + check2/1000000000 + "s");
-		System.out.println("Building tree took: " + check3/1000000000 + "s");
-		System.out.println("File-prep took: " + check4/1000000000 + "s");
-		
-		// Save to file.
-		try {
-			FileOutputStream output = new FileOutputStream(outFileName);
-			output.write(out);
-			output.close();
-		} 
-		catch (Exception ex) {
-			ex.printStackTrace();
-		}
+		return out;
 	}
 	
-	static void VerboseHuffmanD(String inFileName, String outFileName) throws UnsupportedEncodingException {
-		byte[] bytes;
-		try {
-			bytes = ReadFile(inFileName);
-		} catch (IOException e) {
-			e.printStackTrace();
-			return;
-		}
-		
+	static byte[] VerboseHuffmanD(byte[] bytes) throws UnsupportedEncodingException {
 		Word top;
-		//System.out.println("First byte: " + bytes[0]);
 		// Mask off first 5 bits to get amount of filler bits at the end of file.
 		byte fillerBits = (byte)((bytes[0] & 224) >> 5);
-		// Get null byte information.
-		Byte nullBytes[] = new Byte[(bytes[0] & 15)+1];
-		// Get how many bits represent one byte sequence length in size flag.
-		int bitsPerWord = bytes[1]+1;
-		// Get how many bits represent the length of a word.
-		for(int i = 0; i < nullBytes.length; i++) {
-			nullBytes[i] = bytes[2+i];
-		}
+		IntByteArrPair rez = AdaptiveHuffmanD(bytes, true);
+		byte flags[] = rez.bytes;
 		
 		// Reassemble frequency tree.
-		int cursor = 2+nullBytes.length;
+		Integer cursor = 1 + rez.value;
 		Queue<Word> queue = new LinkedList<Word>();
 		
-		int bitCursor = 8-bitsPerWord;
-		int bitMask = (2 << (bitsPerWord-1))-1;
-		int flagIndex = cursor++;
-		byte flag = bytes[flagIndex];
-		int wordSize = (flag >> bitCursor)+1;
-		Byte word[] = new Byte[wordSize];
-		for(int i = 0; i < wordSize; i++) {
+		int flagIndex = 0;
+		int flag = flags[flagIndex++] + 128;
+		Byte word[] = new Byte[flag];
+		for(int i = 0; i < flag; i++) {
 			word[i] = bytes[cursor++];
 		}
 		top = new Word(word);
@@ -634,38 +578,32 @@ public class Main {
 		
 		while(!queue.isEmpty()) {
 			Word val = queue.poll();
-			if(CompareArrays(val.key, nullBytes)) {
+			if(val.key.length == 0) {
 				for(int i = 0; i < Word.childCount; i++) {
-					bitCursor-=bitsPerWord;
-					if(bitCursor < 0) {
-						bitCursor = 8-bitsPerWord;
-						flagIndex = cursor++;
-						flag = bytes[flagIndex];
-					}
-					wordSize = (((flag >> bitCursor)) & bitMask)+1;
-					word = new Byte[wordSize];
-					for(int s = 0; s < wordSize; s++) {
-						word[s] = bytes[cursor++];
+					flag = flags[flagIndex++] + 128;
+					word = new Byte[flag];
+					for(int a = 0; a < flag; a++) {
+						word[a] = bytes[cursor++];
 					}
 					val.child[i] = new Word(word);
-					if(CompareArrays(word, nullBytes)) {
+					if(word.length == 0) {
 						queue.add(val.child[i]);
 					}
 				}
 			} 
 		}
 		
-		//PrintTree(top, nullBytes);
+		//PrintTree(top);
 		
 		// Decode text and save it as byte array.
-		bitCursor = 7;
+		int bitCursor = 7;
 		ArrayList<Byte> text = new ArrayList<Byte>();
 		Word val = top;
 
-		if(CompareArrays(top.key, nullBytes)) {
-			while(cursor < bytes.length-1 || (cursor == bytes.length-1 && (bitCursor > fillerBits || !CompareArrays(val.key, nullBytes)))) {
+		if(top.key.length == 0) {
+			while(cursor < bytes.length-1 || (cursor == bytes.length-1 && (bitCursor > fillerBits || !(val.key.length == 0)))) {
 				Word child = val.child[(bytes[cursor] >> bitCursor) & 1];
-				if(CompareArrays(val.key, nullBytes) && child != null) {
+				if(val.key.length == 0 && child != null) {
 					val = child;
 					if(bitCursor > 0) {
 						bitCursor--;
@@ -700,15 +638,7 @@ public class Main {
 			output[index++] = b;
 		}
 		
-		// Save to file.
-		try {
-			FileOutputStream out = new FileOutputStream(outFileName);
-			out.write(output);
-			out.close();
-		} 
-		catch (Exception ex) {
-			ex.printStackTrace();
-		}
+		return output;
 	}
 	
 	static boolean CompareArrays(Byte[] first, Byte[] second) {
@@ -735,7 +665,7 @@ public class Main {
 		return true;
 	}
 	
-	static void AdaptiveHuffmanC(String inFileName, String outFileName) {
+	static byte[] AdaptiveHuffmanC(byte[] bytes) {
 		// Helps keep track of what goes where.
 		ArrayList<Value> data = new ArrayList<Value>();
 		HashMap<Byte, Value> map = new HashMap<Byte, Value>();
@@ -744,13 +674,6 @@ public class Main {
 		// Get character data from input file.
 		HashMap<Byte, Integer> words = new HashMap<Byte, Integer>();
 		Boolean nullFound = false;
-		byte[] bytes;
-		try {
-			bytes = ReadFile(inFileName);
-		} catch (IOException e) {
-			e.printStackTrace();
-			return;
-		}
 		// Save individual characters and keep track of how many times they're used.
 		for (byte b : bytes) {
 			if(b == 0) {
@@ -848,34 +771,18 @@ public class Main {
 			out[index++] = b;
 		}
 		
-		// Save to file.
-		try {
-			FileOutputStream output = new FileOutputStream(outFileName);
-			output.write(out);
-			output.close();
-		} 
-		catch (Exception ex) {
-			ex.printStackTrace();
-		}
+		return out;
 	}
 	
-	static void AdaptiveHuffmanD(String inFileName, String outFileName) {
-		byte[] bytes;
-		try {
-			bytes = ReadFile(inFileName);
-		} catch (IOException e) {
-			e.printStackTrace();
-			return;
-		}
-		
+	static IntByteArrPair AdaptiveHuffmanD(byte[] bytes, boolean hasEOF) {
 		Value top;
 		
+		int cursor = (hasEOF) ? 1 : 0;
 		// Mask off first 5 bits to get amount of filler bits at the end of file.
-		byte fillerBits = (byte)((bytes[0] & 224) >> 5);
-		byte nullByte = bytes[1];
+		byte fillerBits = (byte)((bytes[cursor++] & 224) >> 5);
+		byte nullByte = bytes[cursor++];
 		
 		// Reassemble frequency tree.
-		int cursor = 2;
 		int valueCount = 0;
 		Queue<Value> queue = new LinkedList<Value>();
 		top = new Value(bytes[cursor]);
@@ -915,12 +822,12 @@ public class Main {
 						cursor++;
 					}
 				} else {
+					if(hasEOF && val.key == (byte) 255) {
+						break;
+					}
 					text.add(val.key);
 					val = top;
 				}
-				/*if(cursor == bytes.length-1) {
-					System.out.printf("%d: %s %s added %s\n", cursor, (bitCursor), fillerBits, val.key);
-				}*/
 			}
 		} else {
 			while(cursor < bytes.length-1 || (cursor == bytes.length-1 && bitCursor > fillerBits)) {
@@ -929,6 +836,9 @@ public class Main {
 				} else {
 					bitCursor = 7;
 					cursor++;
+				}
+				if(hasEOF && val.key == (byte) 255) {
+					break;
 				}
 				text.add(val.key);
 			}
@@ -940,15 +850,7 @@ public class Main {
 			output[index++] = b;
 		}
 		
-		// Save to file.
-		try {
-			FileOutputStream out = new FileOutputStream(outFileName);
-			out.write(output);
-			out.close();
-		} 
-		catch (Exception ex) {
-			ex.printStackTrace();
-		}
+		return new IntByteArrPair(cursor, output);
 	}
 	
 	static byte[] ReadFile(String fileName) throws IOException {
@@ -1038,19 +940,15 @@ public class Main {
 	}
 	
 	// Returns Byte array of tree data with words.
-	public static byte[] WordTreeToBytes(int treeSize, Word top, byte nullByte[], int bitsPerWord) {
+	public static byte[] WordTreeToBytes(int treeSize, Word top) {
 		ArrayList<Byte> out = new ArrayList<Byte>();
-		int freeBits = 8-bitsPerWord;
+		ArrayList<Byte> flags = new ArrayList<Byte>();
 		int flagIndex = 0;
 		ArrayList<Word> layer = new ArrayList<Word>();
 		
-		out.add((byte) ((top.key == null) ? ((nullByte.length-1) << freeBits) : ((top.key.length-1) << freeBits)));
+		flags.add((byte) ((top.key == null) ? -128 : (top.key.length - 128)));
 		
-		if(top.key == null) {
-			for(byte b : nullByte) {
-				out.add(b);
-			}
-		}else {
+		if(top.key != null) {
 			for(byte b : top.key) {
 				out.add(b);
 			}
@@ -1065,27 +963,11 @@ public class Main {
 			ArrayList<Word> newLayer = new ArrayList<Word>();
 			
 			for(Word v : layer) {
-				if(v.key == null) {
-					if(freeBits < bitsPerWord) {
-						freeBits = 8-bitsPerWord;
-						flagIndex = out.size();
-						out.add((byte) 0);
-					} else {
-						freeBits -= bitsPerWord;
-					}
-					out.set(flagIndex, (byte) (out.get(flagIndex) | ((nullByte.length-1) << freeBits)));
-					for(byte b : nullByte) {
-						out.add(b);
-					}
-				}else {
-					if(freeBits < bitsPerWord) {
-						freeBits = 8-bitsPerWord;
-						flagIndex = out.size();
-						out.add((byte) 0);
-					} else {
-						freeBits -= bitsPerWord;
-					}
-					out.set(flagIndex, (byte) (out.get(flagIndex) | ((v.key.length-1) << freeBits)));
+				flags.add((byte) -128);
+				flagIndex++;
+				
+				if(v.key != null) {
+					flags.set(flagIndex, (byte) (v.key.length - 128));
 					for(byte b : v.key) {
 						out.add(b);
 					}
@@ -1099,9 +981,19 @@ public class Main {
 			}
 			layer = newLayer;
 		}
+		flags.add((byte) 255);
 		
-		byte output[] = new byte[out.size()];
 		int index = 0;
+		byte flagA[] = new byte[flags.size()];
+		for(byte b : flags) {
+			flagA[index++] = b;
+		}
+		index = 0;
+		byte flag[] = AdaptiveHuffmanC(flagA);
+		byte output[] = new byte[flag.length + out.size()];
+		for (byte b : flag) {
+			output[index++] = b;
+		}
 		for(byte b : out) {
 			output[index++] = b;
 		}
@@ -1154,10 +1046,10 @@ public class Main {
 			layer = newLayer;
 		}
 	}
-	public static void PrintTree(Word first, Byte[] nullBytes) throws UnsupportedEncodingException {
+	public static void PrintTree(Word first) throws UnsupportedEncodingException {
 		ArrayList<Word> layer = new ArrayList<Word>();
 		
-		if(first.key == null || CompareArrays(first.key, nullBytes)) {
+		if(first.key == null || first.key.length == 0) {
 			System.out.println("[0]");
 		} else {
 			/*System.out.print("[");
@@ -1187,7 +1079,7 @@ public class Main {
 			
 			
 			for(Word v : layer) {
-				if(v.key == null || CompareArrays(v.key, nullBytes)) {
+				if(v.key == null || v.key.length == 0) {
 					System.out.print("[0]");
 				} else {
 					/*System.out.print("[");
@@ -1291,7 +1183,7 @@ public class Main {
 	}
 	
 	static void test(int method) {
-		File testRoot = new File("tests");
+		File testRoot = new File("tests/html");
 		if(testRoot.isFile()) {
 			String fileName = testRoot.getPath();
 			String outFileName = "results/" + testRoot.getParentFile().getName() + "/" + testRoot.getName();
@@ -1345,9 +1237,9 @@ public class Main {
 				comp(fileName, archiveName, method); 
 				long end = System.nanoTime();
 				decomp(archiveName, outFileName, method);
-				System.out.println("Total encding time: " + (end-start)/1000000000 + "s");
 				Double rez = eavluate(fileName, archiveName);
-				System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+				System.out.println("Total encoding time: " + (end-start)/1000000 + "ms");
+				System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
 				if(rez != null && equal(fileName, outFileName)) {
 					avg += rez;
 					totalAvg += rez;
@@ -1359,9 +1251,8 @@ public class Main {
 				}
 			}
 			System.out.printf("Average score: %.1f%%\n", avg/testGroup.listFiles().length);
-			System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+			System.out.println("-------------------------------------------------------------------");
 	    }
-		System.out.println("-------------------------------------------------------------------");
 		System.out.println("Total time taken: " + (System.nanoTime()-fullTime)/1000000000 + "s");
 		if(count > 0) {
 			System.out.printf("Total average score: %.1f%%\n", totalAvg/count);
