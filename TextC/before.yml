@@ -1,0 +1,1892 @@
+test 3 e
+Select compression method.
+1. Deflate
+2. Adaptive Huffman
+3. Word Based Huffman
+4. LZSS
+Test folders found:
+1. artificl
+2. calgary
+3. cantrbry
+4. html
+5. large
+6. misc
+-------------------------------------------------------------------
+[Doing tests from artificl]
+Archiving tests\artificl\a.txt...
+Unique characters: 1
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\artificl\a.txt to archives/artificl/a.txt saves -500,0%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\artificl\aaa.txt...
+Unique characters: 1
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+test 3 e
+Select compression method.
+1. Deflate
+2. Adaptive Huffman
+3. Word Based Huffman
+4. LZSS
+Test folders found:
+1. artificl
+2. calgary
+3. cantrbry
+4. html
+5. large
+6. misc
+-------------------------------------------------------------------
+[Doing tests from artificl]
+Archiving tests\artificl\a.txt...
+Unique characters: 1
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\artificl\a.txt to archives/artificl/a.txt saves -500,0%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\artificl\aaa.txt...
+Unique characters: 1
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 1s
+tests\artificl\aaa.txt to archives/artificl/aaa.txt saves 98,4%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\artificl\alphabet.txt...
+Unique characters: 26
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\artificl\alphabet.txt to archives/artificl/alphabet.txt saves 99,5%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\artificl\random.txt...
+Unique characters: 64
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 1s
+tests\artificl\random.txt to archives/artificl/random.txt saves 9,0%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Average score: -73,3%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+[Doing tests from calgary]
+Archiving tests\calgary\bib...
+Unique characters: 82
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 1s
+tests\calgary\bib to archives/calgary/bib saves 48,7%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\book1...
+Unique characters: 82
+Looking took: 2s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 1s
+Null took: 0s
+sorting took: 1s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 9s
+tests\calgary\book1 to archives/calgary/book1 saves 49,7%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\book2...
+Unique characters: 97
+Looking took: 1s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 2s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 8s
+tests\calgary\book2 to archives/calgary/book2 saves 51,6%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\geo...
+Unique characters: 256
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 1s
+tests\calgary\geo to archives/calgary/geo saves 16,0%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\news...
+Unique characters: 99
+Looking took: 1s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 3s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 8s
+tests\calgary\news to archives/calgary/news saves 42,2%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\obj1...
+Unique characters: 256
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 4s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 4s
+tests\calgary\obj1 to archives/calgary/obj1 saves 8,0%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\obj2...
+Unique characters: 256
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 6s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 8s
+tests\calgary\obj2 to archives/calgary/obj2 saves 35,4%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\paper1...
+Unique characters: 96
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\calgary\paper1 to archives/calgary/paper1 saves 41,1%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\paper2...
+Unique characters: 92
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\calgary\paper2 to archives/calgary/paper2 saves 45,9%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\paper3...
+Unique characters: 85
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\calgary\paper3 to archives/calgary/paper3 saves 40,1%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\paper4...
+Unique characters: 81
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\calgary\paper4 to archives/calgary/paper4 saves 32,3%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\paper5...
+Unique characters: 92
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\calgary\paper5 to archives/calgary/paper5 saves 29,1%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\paper6...
+Unique characters: 94
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\calgary\paper6 to archives/calgary/paper6 saves 36,7%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\pic...
+Unique characters: 159
+Looking took: 3s
+Second part update took: 0s
+Start location update took: 1s
+First part update took: 0s
+Double check took: 6s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 14s
+tests\calgary\pic to archives/calgary/pic saves 85,2%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\progc...
+Unique characters: 93
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\calgary\progc to archives/calgary/progc saves 39,3%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\progl...
+Unique characters: 88
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 1s
+tests\calgary\progl to archives/calgary/progl saves 48,7%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\progp...
+Unique characters: 90
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\calgary\progp to archives/calgary/progp saves 45,7%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\trans...
+Unique characters: 99
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 2s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 3s
+tests\calgary\trans to archives/calgary/trans saves 45,8%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Average score: 41,2%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+[Doing tests from cantrbry]
+Archiving tests\cantrbry\alice29.txt...
+Unique characters: 74
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 1s
+tests\cantrbry\alice29.txt to archives/cantrbry/alice29.txt saves 45,9%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\cantrbry\asyoulik.txt...
+Unique characters: 69
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 1s
+tests\cantrbry\asyoulik.txt to archives/cantrbry/asyoulik.txt saves 46,1%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\cantrbry\cp.html...
+Unique characters: 87
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\cantrbry\cp.html to archives/cantrbry/cp.html saves 40,5%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\cantrbry\fields.c...
+Unique characters: 91
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\cantrbry\fields.c to archives/cantrbry/fields.c saves 43,2%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\cantrbry\grammar.lsp...
+Unique characters: 77
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\cantrbry\grammar.lsp to archives/cantrbry/grammar.lsp saves 33,6%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\cantrbry\kennedy.xls...
+Unique characters: 256
+Looking took: 3s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 1s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 8s
+tests\cantrbry\kennedy.xls to archives/cantrbry/kennedy.xls saves 70,5%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\cantrbry\lcet10.txt...
+Unique characters: 84
+Looking took: 1s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 3s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 6s
+tests\cantrbry\lcet10.txt to archives/cantrbry/lcet10.txt saves 52,2%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\cantrbry\plrabn12.txt...
+Unique characters: 81
+Looking took: 1s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 4s
+tests\cantrbry\plrabn12.txt to archives/cantrbry/plrabn12.txt saves 50,9%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\cantrbry\ptt5...
+Unique characters: 159
+Looking took: 2s
+Second part update took: 0s
+Start location update took: 1s
+First part update took: 0s
+Double check took: 4s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 11s
+tests\cantrbry\ptt5 to archives/cantrbry/ptt5 saves 85,2%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\cantrbry\sum...
+Unique characters: 255
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\cantrbry\sum to archives/cantrbry/sum saves 33,9%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\cantrbry\xargs.1...
+Unique characters: 75
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\cantrbry\xargs.1 to archives/cantrbry/xargs.1 saves 24,3%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Average score: 47,8%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+[Doing tests from html]
+Archiving tests\html\File1.html...
+Unique characters: 191
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\html\File1.html to archives/html/File1.html saves 46,7%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\html\File2.html...
+Unique characters: 193
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 1s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 3s
+tests\html\File2.html to archives/html/File2.html saves 58,8%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\html\File3.html...
+Unique characters: 178
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\html\File3.html to archives/html/File3.html saves 46,4%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\html\File4.html...
+Unique characters: 171
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 1s
+tests\html\File4.html to archives/html/File4.html saves 57,2%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Average score: 52,3%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+[Doing tests from large]
+Archiving tests\large\a.txt...
+Unique characters: 1
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\large\a.txt to archives/large/a.txt saves -500,0%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\aaa.txt...
+Unique characters: 1
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 1s
+tests\large\aaa.txt to archives/large/aaa.txt saves 98,4%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\alphabet.txt...
+Unique characters: 26
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\large\alphabet.txt to archives/large/alphabet.txt saves 99,5%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\bib...
+Unique characters: 82
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 1s
+tests\large\bib to archives/large/bib saves 48,7%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\bible.txt...
+Unique characters: 64
+Looking took: 15s
+Second part update took: 1s
+Start location update took: 4s
+First part update took: 1s
+Double check took: 9s
+Null took: 0s
+sorting took: 9s
+Building tree took: 2s
+File-prep took: 0s
+Total encding time: 54s
+tests\large\bible.txt to archives/large/bible.txt saves 62,8%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\book1...
+Unique characters: 82
+Looking took: 1s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 6s
+tests\large\book1 to archives/large/book1 saves 49,7%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\book2...
+Unique characters: 97
+Looking took: 1s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 3s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 8s
+tests\large\book2 to archives/large/book2 saves 51,6%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\E.coli...
+Unique characters: 4
+Looking took: 18s
+Second part update took: 1s
+Start location update took: 4s
+First part update took: 1s
+Double check took: 5s
+Null took: 0s
+sorting took: 1s
+Building tree took: 1s
+File-prep took: 0s
+Total encding time: 45s
+tests\large\E.coli to archives/large/E.coli saves 71,8%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\geo...
+Unique characters: 256
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 1s
+tests\large\geo to archives/large/geo saves 16,0%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\news...
+Unique characters: 99
+Looking took: 1s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 3s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 6s
+tests\large\news to archives/large/news saves 42,2%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\obj1...
+Unique characters: 256
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 1s
+tests\large\obj1 to archives/large/obj1 saves 8,0%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\obj2...
+Unique characters: 256
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 6s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 9s
+tests\large\obj2 to archives/large/obj2 saves 35,4%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\paper1...
+Unique characters: 96
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\large\paper1 to archives/large/paper1 saves 41,1%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\paper2...
+Unique characters: 92
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\large\paper2 to archives/large/paper2 saves 45,9%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\paper3...
+Unique characters: 85
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\large\paper3 to archives/large/paper3 saves 40,1%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\paper4...
+Unique characters: 81
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\large\paper4 to archives/large/paper4 saves 32,3%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\paper5...
+Unique characters: 92
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\large\paper5 to archives/large/paper5 saves 29,1%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\paper6...
+Unique characters: 94
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\large\paper6 to archives/large/paper6 saves 36,7%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\pi.txt...
+Unique characters: 10
+Looking took: 3s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 9s
+tests\large\pi.txt to archives/large/pi.txt saves 53,6%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\pic...
+Unique characters: 159
+Looking took: 3s
+Second part update took: 0s
+Start location update took: 1s
+First part update took: 0s
+Double check took: 4s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 11s
+tests\large\pic to archives/large/pic saves 85,2%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\progc...
+Unique characters: 93
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\large\progc to archives/large/progc saves 39,3%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\progl...
+Unique characters: 88
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 1s
+tests\large\progl to archives/large/progl saves 48,7%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\progp...
+Unique characters: 90
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\large\progp to archives/large/progp saves 45,7%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\random.txt...
+Unique characters: 64
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\large\random.txt to archives/large/random.txt saves 9,0%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\trans...
+Unique characters: 99
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 2s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 2s
+tests\large\trans to archives/large/trans saves 45,8%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\world192.txt...
+Unique characters: 94
+Looking took: 8s
+Second part update took: 0s
+Start location update took: 2s
+First part update took: 0s
+Double check took: 18s
+Null took: 0s
+sorting took: 8s
+Building tree took: 1s
+File-prep took: 0s
+Total encding time: 48s
+tests\large\world192.txt to archives/large/world192.txt saves 62,0%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Average score: 26,9%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+[Doing tests from misc]
+Archiving tests\misc\atest.txt...
+Unique characters: 10
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\misc\atest.txt to archives/misc/atest.txt saves -51,6%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\misc\pi.txt...
+Unique characters: 10
+Looking took: 3s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 10s
+tests\misc\pi.txt to archives/misc/pi.txt saves 53,6%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Average score: 1,0%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+-------------------------------------------------------------------
+Total time taken: 339s
+Total average score: 29,0%
+
+All test completed successfully!Total encding time: 2s
+tests\artificl\aaa.txt to archives/artificl/aaa.txt saves 98,4%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\artificl\alphabet.txt...
+Unique characters: 26
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\artificl\alphabet.txt to archives/artificl/alphabet.txt saves 99,5%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\artificl\random.txt...
+Unique characters: 64
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 1s
+tests\artificl\random.txt to archives/artificl/random.txt saves 9,0%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Average score: -73,3%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+[Doing tests from calgary]
+Archiving tests\calgary\bib...
+Unique characters: 82
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 1s
+tests\calgary\bib to archives/calgary/bib saves 48,7%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\book1...
+Unique characters: 82
+Looking took: 3s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 1s
+Null took: 0s
+sorting took: 2s
+Building tree took: 1s
+File-prep took: 0s
+Total encding time: 11s
+tests\calgary\book1 to archives/calgary/book1 saves 49,7%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\book2...
+Unique characters: 97
+Looking took: 1s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 2s
+Null took: 0s
+sorting took: 0s
+Building tree took: 2s
+File-prep took: 0s
+Total encding time: 11s
+tests\calgary\book2 to archives/calgary/book2 saves 51,6%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\geo...
+Unique characters: 256
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 1s
+tests\calgary\geo to archives/calgary/geo saves 16,0%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\news...
+Unique characters: 99
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 3s
+Null took: 0s
+sorting took: 0s
+Building tree took: 3s
+File-prep took: 0s
+Total encding time: 9s
+tests\calgary\news to archives/calgary/news saves 42,2%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\obj1...
+Unique characters: 256
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 1s
+tests\calgary\obj1 to archives/calgary/obj1 saves 8,0%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\obj2...
+Unique characters: 256
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 6s
+Null took: 0s
+sorting took: 0s
+Building tree took: 5s
+File-prep took: 0s
+Total encding time: 13s
+tests\calgary\obj2 to archives/calgary/obj2 saves 35,4%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\paper1...
+Unique characters: 96
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\calgary\paper1 to archives/calgary/paper1 saves 41,1%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\paper2...
+Unique characters: 92
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\calgary\paper2 to archives/calgary/paper2 saves 45,9%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\paper3...
+Unique characters: 85
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\calgary\paper3 to archives/calgary/paper3 saves 40,1%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\paper4...
+Unique characters: 81
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\calgary\paper4 to archives/calgary/paper4 saves 32,3%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\paper5...
+Unique characters: 92
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\calgary\paper5 to archives/calgary/paper5 saves 29,1%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\paper6...
+Unique characters: 94
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\calgary\paper6 to archives/calgary/paper6 saves 36,7%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\pic...
+Unique characters: 159
+Looking took: 3s
+Second part update took: 0s
+Start location update took: 1s
+First part update took: 0s
+Double check took: 6s
+Null took: 0s
+sorting took: 0s
+Building tree took: 4s
+File-prep took: 0s
+Total encding time: 18s
+tests\calgary\pic to archives/calgary/pic saves 85,2%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\progc...
+Unique characters: 93
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\calgary\progc to archives/calgary/progc saves 39,3%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\progl...
+Unique characters: 88
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 1s
+tests\calgary\progl to archives/calgary/progl saves 48,7%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\progp...
+Unique characters: 90
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\calgary\progp to archives/calgary/progp saves 45,7%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\calgary\trans...
+Unique characters: 99
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 2s
+Null took: 0s
+sorting took: 0s
+Building tree took: 3s
+File-prep took: 0s
+Total encding time: 6s
+tests\calgary\trans to archives/calgary/trans saves 45,8%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Average score: 41,2%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+[Doing tests from cantrbry]
+Archiving tests\cantrbry\alice29.txt...
+Unique characters: 74
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 2s
+tests\cantrbry\alice29.txt to archives/cantrbry/alice29.txt saves 45,9%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\cantrbry\asyoulik.txt...
+Unique characters: 69
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 1s
+tests\cantrbry\asyoulik.txt to archives/cantrbry/asyoulik.txt saves 46,1%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\cantrbry\cp.html...
+Unique characters: 87
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\cantrbry\cp.html to archives/cantrbry/cp.html saves 40,5%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\cantrbry\fields.c...
+Unique characters: 91
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\cantrbry\fields.c to archives/cantrbry/fields.c saves 43,2%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\cantrbry\grammar.lsp...
+Unique characters: 77
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\cantrbry\grammar.lsp to archives/cantrbry/grammar.lsp saves 33,6%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\cantrbry\kennedy.xls...
+Unique characters: 256
+Looking took: 3s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 9s
+tests\cantrbry\kennedy.xls to archives/cantrbry/kennedy.xls saves 70,5%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\cantrbry\lcet10.txt...
+Unique characters: 84
+Looking took: 1s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 3s
+Null took: 0s
+sorting took: 0s
+Building tree took: 3s
+File-prep took: 0s
+Total encding time: 8s
+tests\cantrbry\lcet10.txt to archives/cantrbry/lcet10.txt saves 52,2%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\cantrbry\plrabn12.txt...
+Unique characters: 81
+Looking took: 1s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 4s
+tests\cantrbry\plrabn12.txt to archives/cantrbry/plrabn12.txt saves 50,9%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\cantrbry\ptt5...
+Unique characters: 159
+Looking took: 2s
+Second part update took: 0s
+Start location update took: 1s
+First part update took: 0s
+Double check took: 3s
+Null took: 0s
+sorting took: 0s
+Building tree took: 3s
+File-prep took: 0s
+Total encding time: 14s
+tests\cantrbry\ptt5 to archives/cantrbry/ptt5 saves 85,2%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\cantrbry\sum...
+Unique characters: 255
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\cantrbry\sum to archives/cantrbry/sum saves 33,9%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\cantrbry\xargs.1...
+Unique characters: 75
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\cantrbry\xargs.1 to archives/cantrbry/xargs.1 saves 24,3%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Average score: 47,8%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+[Doing tests from html]
+Archiving tests\html\File1.html...
+Unique characters: 191
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\html\File1.html to archives/html/File1.html saves 46,7%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\html\File2.html...
+Unique characters: 193
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 4s
+tests\html\File2.html to archives/html/File2.html saves 58,8%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\html\File3.html...
+Unique characters: 178
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\html\File3.html to archives/html/File3.html saves 46,4%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\html\File4.html...
+Unique characters: 171
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 2s
+tests\html\File4.html to archives/html/File4.html saves 57,2%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Average score: 52,3%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+[Doing tests from large]
+Archiving tests\large\a.txt...
+Unique characters: 1
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\large\a.txt to archives/large/a.txt saves -500,0%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\aaa.txt...
+Unique characters: 1
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 1s
+tests\large\aaa.txt to archives/large/aaa.txt saves 98,4%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\alphabet.txt...
+Unique characters: 26
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\large\alphabet.txt to archives/large/alphabet.txt saves 99,5%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\bib...
+Unique characters: 82
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 1s
+tests\large\bib to archives/large/bib saves 48,7%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\bible.txt...
+Unique characters: 64
+Looking took: 15s
+Second part update took: 1s
+Start location update took: 4s
+First part update took: 1s
+Double check took: 9s
+Null took: 0s
+sorting took: 10s
+Building tree took: 9s
+File-prep took: 0s
+Total encding time: 63s
+tests\large\bible.txt to archives/large/bible.txt saves 62,8%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\book1...
+Unique characters: 82
+Looking took: 1s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 1s
+File-prep took: 0s
+Total encding time: 7s
+tests\large\book1 to archives/large/book1 saves 49,7%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\book2...
+Unique characters: 97
+Looking took: 1s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 2s
+Null took: 0s
+sorting took: 0s
+Building tree took: 2s
+File-prep took: 0s
+Total encding time: 9s
+tests\large\book2 to archives/large/book2 saves 51,6%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\E.coli...
+Unique characters: 4
+Looking took: 15s
+Second part update took: 1s
+Start location update took: 5s
+First part update took: 1s
+Double check took: 4s
+Null took: 0s
+sorting took: 1s
+Building tree took: 4s
+File-prep took: 0s
+Total encding time: 47s
+tests\large\E.coli to archives/large/E.coli saves 71,8%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\geo...
+Unique characters: 256
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 1s
+tests\large\geo to archives/large/geo saves 16,0%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\news...
+Unique characters: 99
+Looking took: 1s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 3s
+Null took: 0s
+sorting took: 0s
+Building tree took: 3s
+File-prep took: 0s
+Total encding time: 10s
+tests\large\news to archives/large/news saves 42,2%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\obj1...
+Unique characters: 256
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 1s
+tests\large\obj1 to archives/large/obj1 saves 8,0%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\obj2...
+Unique characters: 256
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 6s
+Null took: 0s
+sorting took: 0s
+Building tree took: 6s
+File-prep took: 0s
+Total encding time: 14s
+tests\large\obj2 to archives/large/obj2 saves 35,4%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\paper1...
+Unique characters: 96
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\large\paper1 to archives/large/paper1 saves 41,1%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\paper2...
+Unique characters: 92
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\large\paper2 to archives/large/paper2 saves 45,9%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\paper3...
+Unique characters: 85
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\large\paper3 to archives/large/paper3 saves 40,1%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\paper4...
+Unique characters: 81
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\large\paper4 to archives/large/paper4 saves 32,3%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\paper5...
+Unique characters: 92
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\large\paper5 to archives/large/paper5 saves 29,1%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\paper6...
+Unique characters: 94
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\large\paper6 to archives/large/paper6 saves 36,7%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\pi.txt...
+Unique characters: 10
+Looking took: 2s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 1s
+File-prep took: 0s
+Total encding time: 8s
+tests\large\pi.txt to archives/large/pi.txt saves 53,6%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\pic...
+Unique characters: 159
+Looking took: 2s
+Second part update took: 0s
+Start location update took: 1s
+First part update took: 0s
+Double check took: 3s
+Null took: 0s
+sorting took: 0s
+Building tree took: 3s
+File-prep took: 0s
+Total encding time: 14s
+tests\large\pic to archives/large/pic saves 85,2%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\progc...
+Unique characters: 93
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\large\progc to archives/large/progc saves 39,3%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\progl...
+Unique characters: 88
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 1s
+tests\large\progl to archives/large/progl saves 48,7%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\progp...
+Unique characters: 90
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\large\progp to archives/large/progp saves 45,7%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\random.txt...
+Unique characters: 64
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\large\random.txt to archives/large/random.txt saves 9,0%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\trans...
+Unique characters: 99
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 2s
+Null took: 0s
+sorting took: 0s
+Building tree took: 2s
+File-prep took: 0s
+Total encding time: 4s
+tests\large\trans to archives/large/trans saves 45,8%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\large\world192.txt...
+Unique characters: 94
+Looking took: 8s
+Second part update took: 0s
+Start location update took: 2s
+First part update took: 0s
+Double check took: 17s
+Null took: 0s
+sorting took: 7s
+Building tree took: 15s
+File-prep took: 0s
+Total encding time: 60s
+tests\large\world192.txt to archives/large/world192.txt saves 62,0%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Average score: 26,9%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+[Doing tests from misc]
+Archiving tests\misc\atest.txt...
+Unique characters: 10
+Looking took: 0s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 0s
+tests\misc\atest.txt to archives/misc/atest.txt saves -51,6%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Archiving tests\misc\pi.txt...
+Unique characters: 10
+Looking took: 2s
+Second part update took: 0s
+Start location update took: 0s
+First part update took: 0s
+Double check took: 0s
+Null took: 0s
+sorting took: 0s
+Building tree took: 0s
+File-prep took: 0s
+Total encding time: 7s
+tests\misc\pi.txt to archives/misc/pi.txt saves 53,6%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Average score: 1,0%
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+-------------------------------------------------------------------
+Total average score: 29,0%
+
+All test completed successfully!

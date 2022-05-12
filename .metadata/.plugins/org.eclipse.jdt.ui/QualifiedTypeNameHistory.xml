@@ -1,18 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.beans.Introspector"/>
-    <fullyQualifiedTypeName name="java.util.Set"/>
-    <fullyQualifiedTypeName name="java.util.Map.Entry"/>
-    <fullyQualifiedTypeName name="java.lang.System"/>
-    <fullyQualifiedTypeName name="java.util.PriorityQueue"/>
-    <fullyQualifiedTypeName name="java.util.HashMap"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="java.io.DataOutputStream"/>
-    <fullyQualifiedTypeName name="java.io.FileOutputStream"/>
-    <fullyQualifiedTypeName name="java.util.LinkedList"/>
-    <fullyQualifiedTypeName name="java.io.DataInputStream"/>
-    <fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
-    <fullyQualifiedTypeName name="java.nio.charset.StandardCharsets"/>
-    <fullyQualifiedTypeName name="java.io.OutputStreamWriter"/>
-    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>
