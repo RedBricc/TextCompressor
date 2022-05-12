@@ -1,9 +1,12 @@
-/OldMain.class
 /Block.class
 /Deflate.class
+/HashSetPair.class
 /Huffman.class
 /HuffmanUtility.class
+/IntByteArrPair.class
 /LZSS.class
 /LiteralBlock.class
+/Main.class
 /ReferenceBlock.class
 /Value.class
+/Word.class
