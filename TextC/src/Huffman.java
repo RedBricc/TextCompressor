@@ -7,7 +7,7 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Map.Entry;
 
-class Huffman {
+public class Huffman {
 	static byte[] AdaptiveHuffmanC(byte[] bytes) {
 		// Helps keep track of what goes where.
 		ArrayList<Value> data = new ArrayList<Value>();
@@ -321,13 +321,13 @@ class Huffman {
 					Double cost = (double) length + 4.307;
 					
 					// Amount of bytes compressed
-					gain += ((1 / (1 + Math.log(word.getKey().length() - val.stringValue.length()) / Math.log(2))) * word.getValue().secondSet.size() * (1+(Math.log(flagCount) / Math.log(2))*(Math.log(1+((word.getValue().secondSet.size()-min < 0) ? 0 : ((max-word.getValue().secondSet.size() < 0) ? 1 : (((word.getValue().secondSet.size()-min)/max))))*10) / Math.log(2))))
-							+ ((1 / (1 + Math.log(val.stringValue.length()) / Math.log(2))) * word.getValue().firstSet.size() * (1+(Math.log(flagCount) / Math.log(2))*(Math.log(1+((word.getValue().firstSet.size()-min < 0) ? 0 : ((max-word.getValue().firstSet.size() < 0) ? 1 : (((word.getValue().firstSet.size()-min)/max))))*10) / Math.log(2))));
+					gain += ((1 / (1 + Math.log(word.getKey().length() - val.stringValue.length()) / Math.log(2))) * word.getValue().secondSet.size() * (1+(Math.log(flagCount) / Math.log(2))*(Math.log(1+((word.getValue().secondSet.size()-min < 0) ? 0 : ((max-word.getValue().secondSet.size() < 0) ? 1 : (((word.getValue().secondSet.size()*1.0-min)/max))))*10) / Math.log(2))))
+							+ ((1 / (1 + Math.log(val.stringValue.length()) / Math.log(2))) * word.getValue().firstSet.size() * (1+(Math.log(flagCount) / Math.log(2))*(Math.log(1+((word.getValue().firstSet.size()-min < 0) ? 0 : ((max-word.getValue().firstSet.size() < 0) ? 1 : (((word.getValue().firstSet.size()*1.0-min)/max))))*10) / Math.log(2))));
 					// Approximation of how much each encoded word takes up.
 					// 1 / LOG(newLWL;2) * COUNT * (1+LOG(TOTAL;2)*LOG(1+VAL*10;2)*0,477)
 					// TODO: find approximation without the value TOTAL.
 					// Where VAL is COUNT normalized to between 0 and 1.
-					cost += (1 / (1 + Math.log(newLWL) / Math.log(2))) * count * (1+(Math.log(flagCount) / Math.log(2))*(Math.log(1+((count-min < 0) ? 0 : ((max-count < 0) ? 1 : (((count-min)/max))))*10) / Math.log(2)));
+					cost += (1 / (1 + Math.log(newLWL) / Math.log(2))) * count * (1+(Math.log(flagCount) / Math.log(2))*(Math.log(1+((count-min < 0) ? 0 : ((max-count < 0) ? 1 : (((count*1.0-min)/max))))*10) / Math.log(2)));
 					// Adding words adds one flag byte.
 					cost++;
 					
@@ -523,6 +523,7 @@ class Huffman {
 	}
 
 	static byte[] VerboseHuffmanD(byte[] bytes) throws UnsupportedEncodingException {
+
 		Word top;
 		// Mask off first 5 bits to get amount of filler bits at the end of file.
 		byte fillerBits = (byte)((bytes[0] & 224) >> 5);
@@ -605,5 +606,226 @@ class Huffman {
 		}
 		
 		return output;
+	}
+	
+	static byte[] BitwiseHuffmanC(byte[] bytes) {
+		// Helps keep track of what goes where.
+		ArrayList<Value> data = new ArrayList<Value>();
+		HashMap<Byte, Value> map = new HashMap<Byte, Value>();
+		Value top;
+		int treeSize = 1;
+		// Get character data from input file.
+		HashMap<Byte, Integer> words = new HashMap<Byte, Integer>();
+		Boolean nullFound = false;
+		// Save individual characters and keep track of how many times they're used.
+		for (byte b : bytes) {
+			if(b == 0) {
+				nullFound = true;
+			}
+			if(words.containsKey(b)) {
+				words.merge(b, 1, Integer::sum);
+			}else {
+				words.put(b, 1);
+			}
+		}
+		
+		// If necessary, find a free byte in the text that will be used to represent null.
+		byte nullByte = 0;
+		boolean full = nullFound;
+		if(nullFound) {
+			for(int i = 0; i < 256; i++) {
+				if(!words.containsKey((byte)(i))) {
+					nullByte = (byte)(i);
+					full = false;
+					break;
+				}
+			}
+		}
+		
+		// Create frequency tree using byte values used for future size reference.
+		// Convert byte data into sorted array.
+		for(Entry<Byte, Integer> e : words.entrySet()) {
+			Value val = new Value(e.getKey(), e.getValue());
+			int index = 0;
+			while(index < data.size() && data.get(index).value < val.value) {
+				index++;
+			}
+			data.add(index, val);
+			map.put(val.key, data.get(index));
+		}
+		
+		PriorityQueue<Value> dataQueue = new PriorityQueue<Value>(data);
+		
+		// If all bytes are used, use byte with least priority as null-byte.
+		if(full) {
+			nullByte = data.get(0).key;
+		}
+		
+		// Convert sorted array into tree of values. The largest values are at the top.
+		while(dataQueue.size() > 1) {
+			Value c[] = new Value[Value.childCount];
+			for(int i = 0; i < c.length; i++) {
+				c[i] = dataQueue.poll();
+			}
+			Value parent = new Value(c, Value.childSum(c));
+			
+			// Save parent and side information for path building.
+			for(byte i = 0; i < c.length; i++) {
+				c[i].parent = parent;
+				c[i].side = i;
+			}
+			
+			dataQueue.add(parent);
+			treeSize+=Value.childCount;
+		}
+		
+		top = dataQueue.poll();
+		//PrintTree(top);
+		
+		// Encode tree into byte array using frequency tree.
+		byte[] head = new byte[treeSize];
+		int index = 0;
+		ArrayList<Value> layer = new ArrayList<Value>();
+		
+		if(top.key == null) {
+			head[index++] = nullByte;
+		}else {
+			head[index++] = top.key;
+		}
+		
+		for(Value child : top.child) {
+			if(child != null) {
+				layer.add(child);
+			}
+		}
+		
+		while(layer.size() > 0) {
+			ArrayList<Value> newLayer = new ArrayList<Value>();
+			
+			for(Value v : layer) {
+				if(v.key == null) {
+					head[index++] = nullByte;
+				}else {
+					head[index++] = v.key;
+				}
+				
+				for(Value child : v.child) {
+					if(child != null) {
+						newLayer.add(child);
+					}
+				}
+			}
+			layer = newLayer;
+		}
+		
+		ArrayList<Byte> body = new ArrayList<Byte>();
+		Byte curByte = 0;
+		index = 0;
+		for(byte by : bytes) {
+			for(byte bit : HuffmanUtility.GetPath(map, by)) {
+				curByte = (byte) (curByte | (bit << (7-(index++))));
+				if(index >= 8) {
+					body.add(curByte);
+					curByte = 0;
+					index = 0;
+				}
+			}
+		}
+		body.add(curByte);
+
+		byte[] out = new byte[2+head.length+body.size()];
+		// Store information about how many filler bits exist at the end of the file.
+		out[0] = (byte)((7-index) << 5);
+		out[1] = nullByte;
+		
+		// Assemble final output.
+		index = 2;
+		for(byte h : head) {
+			out[index++] = h;
+		}
+		for(byte b : body) {
+			out[index++] = b;
+		}
+		
+		return out;
+	}
+
+	static IntByteArrPair BitwiseHuffmanD(byte[] bytes, boolean hasEOF) {
+		Value top;
+		
+		int cursor = (hasEOF) ? 1 : 0;
+		// Mask off first 5 bits to get amount of filler bits at the end of file.
+		byte fillerBits = (byte)((bytes[cursor++] & 224) >> 5);
+		byte nullByte = bytes[cursor++];
+		
+		// Reassemble frequency tree.
+		int valueCount = 0;
+		Queue<Value> queue = new LinkedList<Value>();
+		top = new Value(bytes[cursor]);
+		queue.add(top);
+		
+		while(queue.size() != 0 && valueCount < 255) {
+			Value val = queue.poll();
+			if(val.key == nullByte) {
+				for(int i = 0; i < Value.childCount; i++) {
+					val.child[i] = new Value(bytes[++cursor]);
+					if(bytes[cursor] == nullByte) {
+						queue.add(val.child[i]);
+					} else {
+						valueCount++;
+					}
+				}
+			} 
+		}
+		
+		//PrintTree(top);
+		
+		// Decode text and save it as byte array.
+		int bitCursor = 7;
+		ArrayList<Byte> text = new ArrayList<Byte>();
+		Value val = top;
+
+		cursor++;
+		if(top.key == nullByte) {
+			while(cursor < bytes.length-1 || (cursor == bytes.length-1 && (bitCursor > fillerBits || val.key != nullByte))) {
+				Value child = val.child[(bytes[cursor] >> bitCursor) & 1];
+				if(val.key == nullByte && child != null) {
+					val = child;
+					if(bitCursor > 0) {
+						bitCursor--;
+					} else {
+						bitCursor = 7;
+						cursor++;
+					}
+				} else {
+					if(hasEOF && val.key == (byte) 255) {
+						break;
+					}
+					text.add(val.key);
+					val = top;
+				}
+			}
+		} else {
+			while(cursor < bytes.length-1 || (cursor == bytes.length-1 && bitCursor > fillerBits)) {
+				if(bitCursor > 0) {
+					bitCursor--;
+				} else {
+					bitCursor = 7;
+					cursor++;
+				}
+				if(hasEOF && val.key == (byte) 255) {
+					break;
+				}
+				text.add(val.key);
+			}
+		}
+		byte output[] = new byte[text.size()];
+		int index = 0;
+		
+		for(Byte b : text) {
+			output[index++] = b;
+		}
+		
+		return new IntByteArrPair(cursor, output);
 	}
 }

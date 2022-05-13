@@ -23,14 +23,14 @@ public class Main {
 				fileName = sc.next();
 				System.out.print("archive name: ");
 				outFileName = sc.next();
-				Deflate.comp(fileName, outFileName, 1);
+				Deflate.comp(fileName, outFileName);
 				break;
 			case "decomp":
 				System.out.print("archive name: ");
 				fileName = sc.next();
 				System.out.print("file name: ");
 				outFileName = sc.next();
-				Deflate.decomp(fileName, outFileName, 1);
+				Deflate.decomp(fileName, outFileName);
 				break;
 			case "size":
 				System.out.print("file name: ");
@@ -55,22 +55,7 @@ public class Main {
 				about();
 				break;
 			case "test":
-				System.out.println("Select compression method.");
-				System.out.println("1. Deflate");
-				System.out.println("2. Adaptive Huffman");
-				System.out.println("3. Word Based Huffman");
-				System.out.println("4. LZSS");
-				Integer method = null;
-				do {
-					if (method != null)
-						System.out.println("input-output error, number out of bounds!");
-					while (!sc.hasNextInt()) {
-						System.out.println("input-output error, input is not an integer!");
-						sc.next();
-					}
-					method = sc.nextInt();
-				} while(method < 1 || method > 4);
-				test(method);
+				test();
 				break;
 			case "-e":
 			case "e":
@@ -145,16 +130,16 @@ public class Main {
 		}
 	}
 	
-	static void test(int method) {
-		File testRoot = new File("tests");
+	static void test() {
+		File testRoot = new File("tests/html2");
 		if(testRoot.isFile()) {
 			String fileName = testRoot.getPath();
 			String outFileName = "results/" + testRoot.getParentFile().getName() + "/" + testRoot.getName();
 			String archiveName = "archives/" + testRoot.getParentFile().getName() + "/" + testRoot.getName();
 			long start = System.nanoTime();
 			new File(archiveName).delete();
-			Deflate.comp(fileName, archiveName, method); 
-			Deflate.decomp(archiveName, outFileName, method);
+			Deflate.comp(fileName, archiveName); 
+			Deflate.decomp(archiveName, outFileName);
 			long end = System.nanoTime();
 			Double rez = eavluate(fileName, archiveName);
 			System.out.println("Time taken: " + (end-start)/1000000000 + "s");
@@ -197,9 +182,9 @@ public class Main {
 				long start = System.nanoTime();
 				new File(archiveName).delete();
 				System.out.println("Archiving " + fileName + "...");
-				Deflate.comp(fileName, archiveName, method); 
+				Deflate.comp(fileName, archiveName); 
 				long end = System.nanoTime();
-				Deflate.decomp(archiveName, outFileName, method);
+				Deflate.decomp(archiveName, outFileName);
 				Double rez = eavluate(fileName, archiveName);
 				System.out.println("Total encoding time: " + (end-start)/1000000 + "ms");
 				System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
