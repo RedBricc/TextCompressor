@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -93,17 +92,17 @@ public class LZSSFull {
       }
 
       public static int indexOfSequence(List<Byte> buffer, List<Byte> ahead) {
-        int offset = 0;
+        int foundBytes = 0;
 
         for (int i = 0; i < buffer.size(); i++) {
-          if (ahead.size() <= offset) {
-            return i - ahead.size();
-          }
-
-          if (ahead.get(offset) == buffer.get(i)) {
-            offset++;
+          if (buffer.get(i) == ahead.get(foundBytes)) {
+            if (foundBytes + 1 == ahead.size()) {
+              return buffer.size() - i + foundBytes;
+            } else {
+              foundBytes++;
+            }
           } else {
-            offset = 0;
+            foundBytes = 0;
           }
         }
 
@@ -122,7 +121,7 @@ public class LZSSFull {
       public static final int WINDOW_SIZE = MAX_OFFSET;
       public static final int AHEAD_SIZE = MAX_LENGTH;
 
-      public static final byte EOF = 0x04;
+      public static final byte EOF = 0x00;
     }
 
     public static class ByteEncoder {
@@ -136,94 +135,79 @@ public class LZSSFull {
         // The resulting blocks
         List<Block> blocks = new ArrayList<>();
 
+        // Tracks if and where last elements were found
+        boolean found = false;
+        int lastIndex = -1;
+
         // Go through all characters
         for (int i = 0; i < bytes.length; i++) {
-          byte charByte = bytes[i];
+          // Build up ahead
+          ahead.add(bytes[i]);
 
-          // Temporary ahead buffer
-          List<Byte> temp = new ArrayList<>(ahead) {
-            {
-              add(charByte);
-            }
-          };
+          if (ahead.size() < Constants.MIN_LENGTH)
+            continue;
 
-          // Index of the longest repeating sequence in the array
-          int index = Utils.indexOfSequence(buffer, temp);
+          int index = Utils.indexOfSequence(buffer, ahead);
 
-          // Match wasn't found
-          if (index == -1 || i == bytes.length - 1) {
-            if (i == bytes.length - 1 && index != -1) {
-              ahead.add(charByte);
-            }
-
-            if (ahead.size() > 1) {
-              index = Utils.indexOfSequence(buffer, ahead);
-
-              int length = ahead.size();
-              int offset = i - index - length;
-
-              if (length < Constants.MIN_LENGTH || length > Constants.MAX_LENGTH) {
-                for (byte character : ahead) {
-                  blocks.add(new CharacterBlock(character));
-                }
-              } else {
-                blocks.add(new ReferenceBlock(offset, length));
-              }
-
-              buffer.addAll(ahead);
-            } else {
-              for (byte character : ahead) {
-                blocks.add(new CharacterBlock(character));
-              }
-
-              buffer.addAll(ahead);
-            }
-
+          if ((index == -1 || ahead.size() <= Constants.MAX_LENGTH) && found) {
+            int len = ahead.size() - 1;
+            // Found full references
+            blocks.add(new ReferenceBlock(lastIndex, len));
             ahead.clear();
+            ahead.add(bytes[i]);
+            found = false;
+          } else if (index == -1) {
+            // Match not found, add as literal
+            blocks.add(new CharacterBlock(ahead.get(0)));
+            buffer.add(ahead.get(0));
+            if(buffer.size() > Constants.MAX_OFFSET-1) {
+            	buffer.remove(0);
+            }
+            ahead.remove(ahead.get(0));
+          } else {
+            // Match found
+            found = true;
+            lastIndex = index;
           }
+        }
 
-          ahead.add(charByte);
-
-          if (buffer.size() >= Constants.WINDOW_SIZE) {
-            buffer.remove(0);
+        if (lastIndex != -1) {
+          if (found == true) {
+            // Found full reference
+            blocks.add(new ReferenceBlock(lastIndex, ahead.size()));
+          } else {
+            // Match not found, add as literal
+            for (byte b : ahead) {
+              blocks.add(new CharacterBlock(b));
+            }
           }
         }
 
         ArrayList<Byte> output = new ArrayList<>();
         ArrayList<Byte> blockBytes = new ArrayList<>();
 
+        output.add((byte) 3);
+
         byte flags = 0;
         int flagsRead = 0;
 
-        for (int i = 0; i < blocks.size(); i++) {
-          Block block = blocks.get(i);
+        for (int i = 0; i < Math.ceil(blocks.size() / 8f) * 8; i++) {
+          if (i < blocks.size()) {
+            Block block = blocks.get(i);
 
-          flags |= (byte) (block.getFlag() & 1) << flagsRead;
-          flagsRead++;
+            flags |= (byte) (block.getFlag() & 1) << flagsRead;
+            flagsRead++;
 
-          // if (i < 1024) {
-          // System.out.print(block.getRepresentation());
-          // }
-
-          for (byte b : block.getBytes()) {
-            blockBytes.add(b);
-
-            if (i < 200) {
-              if (block.getFlag() == 1) {
-                // System.out.print(block.getRepresentation() + ": ");
-              }
-              // System.out.println(Integer.toHexString(Byte.toUnsignedInt(b)) + " " + (char)
-              // b);
+            for (byte b : block.getBytes()) {
+              blockBytes.add(b);
             }
+          } else {
+            flags |= 0 << flagsRead;
+            flagsRead++;
+            blockBytes.add(Constants.EOF);
           }
 
           if (flagsRead == 8) {
-            if (i < 200) {
-              // System.out
-              // .println(String.format("%8s",
-              // Integer.toBinaryString(Byte.toUnsignedInt(flags))).replace(' ', '0'));
-            }
-
             output.add(flags);
             output.addAll(blockBytes);
             blockBytes.clear();
@@ -232,65 +216,43 @@ public class LZSSFull {
           }
         }
 
-        output.add(Constants.EOF);
-
         return Utils.byteListToArray(output);
       }
 
       public static byte[] decode(byte[] bytes) {
         ArrayList<Byte> output = new ArrayList<>();
+        ArrayList<Byte> literals = new ArrayList<>();
 
         byte flags = 0;
         int flagsRead = 7;
-        // System.out.println();
-        for (int i = 0; i < bytes.length; i++) {
+
+        for (int i = 1; i < bytes.length; i++) {
           flags >>= 1;
           flagsRead++;
 
           if (flagsRead == 8) {
             flags = bytes[i++];
-            // System.out.println(String.format("%8s", Integer.toBinaryString((int)
-            // flags)).replace(' ', '0'));
             flagsRead = 0;
           }
 
-          if (i >= bytes.length) {
+          if ((flags & 1) != 1 && bytes[i] == Constants.EOF) {
             break;
           }
 
           if ((flags & 1) == 0) {
             output.add(bytes[i]);
-            // System.out.println(Integer.toHexString(Byte.toUnsignedInt(bytes[i])) + " " +
-            // (char) bytes[i]);
+            literals.add(bytes[i]);
           } else {
             ReferenceBlock block = ReferenceBlock.fromBytes(bytes[i++], bytes[i]);
 
             int length = block.getLength();
             int offset = block.getOffset();
-            int cur = output.size();
-
-            try {
-              output.addAll(output.subList(cur - offset, cur - offset + length));
-            } catch (Exception e) {
-
-              for (byte c : output) {
-                // System.out.print(Integer.toHexString(Byte.toUnsignedInt(c)) + " ");
-              }
-              String outString = new String(Utils.byteListToArray(output), StandardCharsets.UTF_8);
-
-              System.out.println();
-              System.out.println(outString);
-              System.out.println(block.getRepresentation());
-              for (byte c : outString.getBytes()) {
-                // System.out.print(Integer.toHexString(Byte.toUnsignedInt(c)) + " ");
-              }
-              throw e;
-            }
+            int cur = literals.size();
+            output.addAll(literals.subList(cur - offset, cur - offset + length));
           }
         }
 
         byte[] outputBytes = new byte[output.size()];
-
         for (int i = 0; i < outputBytes.length; i++) {
           outputBytes[i] = output.get(i);
         }
@@ -301,7 +263,7 @@ public class LZSSFull {
   }
 
   public static void main(String[] args) {
-    test(Path.of("./File2.html"));
+    test(Path.of(".\\tests\\misc\\atest.txt"));
   }
 
   public static void test(Path filePath) {
@@ -338,7 +300,7 @@ public class LZSSFull {
       System.out.printf("Lossless: %s\n", originalString.equals(decodedString));
       System.out.printf("Compression rate: %.2f%%\n", encodedBytes.length / (float) originalBytes.length * 100);
 
-    } catch (IOException e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
   }

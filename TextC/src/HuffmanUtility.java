@@ -126,20 +126,20 @@ class HuffmanUtility {
 		if(first.key == null || first.key.length == 0) {
 			System.out.println("[0]");
 		} else {
-			/*System.out.print("[");
+			System.out.print("[");
 			for(int i = 0; i < first.key.length; i++) {
 				System.out.print(first.key[i]);
 				if(i != first.key.length-1) {
 					System.out.print(",");
 				}
 			}
-			System.out.println("]");*/
-			byte[] temp = new byte[first.key.length];
+			System.out.println("]");
+			/*byte[] temp = new byte[first.key.length];
 			int index = 0;
 			for(byte b : first.key) {
 				temp[index++] = b==10 ? 110 : b;
 			}
-			System.out.println("[" + new String(temp, "ISO-8859-1") + "]");
+			System.out.println("[" + new String(temp, "ISO-8859-1") + "]");*/
 		}
 		
 		for(Word child : first.child) {
@@ -156,7 +156,7 @@ class HuffmanUtility {
 				if(v.key == null || v.key.length == 0) {
 					System.out.print("[0]");
 				} else {
-					/*System.out.print("[");
+					System.out.print("[");
 					for(int i = 0; i < v.key.length; i++) {
 						System.out.print(v.key[i]);
 						if(i+1 == v.key.length) {
@@ -164,13 +164,13 @@ class HuffmanUtility {
 						} else {
 							System.out.print(",");
 						}
-					}*/
+					}/*
 					byte[] temp = new byte[v.key.length];
 					int i = 0;
 					for(byte b : v.key) {
 						temp[i++] = (b==10) ? 110 : b;
 					}
-					System.out.print("[" + new String(temp, "ISO-8859-1") + "]");
+					System.out.print("[" + new String(temp, "ISO-8859-1") + "]");*/
 				}
 				
 				if(index%2==0) {

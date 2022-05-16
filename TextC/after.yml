@@ -1,9 +1,4 @@
-test 3 e
-Select compression method.
-1. Deflate
-2. Adaptive Huffman
-3. Word Based Huffman
-4. LZSS
+test e
 Test folders found:
 1. artificl
 2. calgary
@@ -15,394 +10,405 @@ Test folders found:
 -------------------------------------------------------------------
 [Doing tests from artificl]
 Archiving tests\artificl\a.txt...
-tests\artificl\a.txt to archives/artificl/a.txt saves -800.0%
-Total encoding time: 1ms
+Expected size was 1, actual size is 0
+tests\artificl\a.txt to archives/artificl/a.txt saves -100.0%
+Total encoding time: 7ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\artificl\aaa.txt...
-tests\artificl\aaa.txt to archives/artificl/aaa.txt saves 98.4%
-Total encoding time: 354ms
+Expected size was 100000, actual size is 7
+tests\artificl\aaa.txt to archives/artificl/aaa.txt saves 99.7%
+Total encoding time: 1223ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\artificl\alphabet.txt...
+Expected size was 100000, actual size is 2
 tests\artificl\alphabet.txt to archives/artificl/alphabet.txt saves 99.5%
-Total encoding time: 192ms
+Total encoding time: 454ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\artificl\random.txt...
-tests\artificl\random.txt to archives/artificl/random.txt saves 17.5%
-Total encoding time: 277ms
+tests\artificl\random.txt to archives/artificl/random.txt saves 24.9%
+Total encoding time: 1730ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-Average score: -146.1%
+Average score: 31.0%
 -------------------------------------------------------------------
 [Doing tests from calgary]
 Archiving tests\calgary\bib...
-tests\calgary\bib to archives/calgary/bib saves 53.8%
-Total encoding time: 259ms
+tests\calgary\bib to archives/calgary/bib saves 53.9%
+Total encoding time: 1249ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\calgary\book1...
-tests\calgary\book1 to archives/calgary/book1 saves 54.3%
-Total encoding time: 2015ms
+tests\calgary\book1 to archives/calgary/book1 saves 55.1%
+Total encoding time: 9987ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\calgary\book2...
-tests\calgary\book2 to archives/calgary/book2 saves 55.2%
-Total encoding time: 1280ms
+tests\calgary\book2 to archives/calgary/book2 saves 55.7%
+Total encoding time: 7656ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\calgary\geo...
-tests\calgary\geo to archives/calgary/geo saves 38.8%
-Total encoding time: 170ms
+tests\calgary\geo to archives/calgary/geo saves 37.2%
+Total encoding time: 1582ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\calgary\news...
-tests\calgary\news to archives/calgary/news saves 47.5%
-Total encoding time: 1733ms
+tests\calgary\news to archives/calgary/news saves 48.5%
+Total encoding time: 5240ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\calgary\obj1...
-tests\calgary\obj1 to archives/calgary/obj1 saves 36.3%
-Total encoding time: 32ms
+tests\calgary\obj1 to archives/calgary/obj1 saves 35.8%
+Total encoding time: 734ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\calgary\obj2...
-tests\calgary\obj2 to archives/calgary/obj2 saves 44.8%
-Total encoding time: 2175ms
+tests\calgary\obj2 to archives/calgary/obj2 saves 45.2%
+Total encoding time: 3314ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\calgary\paper1...
-tests\calgary\paper1 to archives/calgary/paper1 saves 46.8%
-Total encoding time: 72ms
+tests\calgary\paper1 to archives/calgary/paper1 saves 48.4%
+Total encoding time: 585ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\calgary\paper2...
-tests\calgary\paper2 to archives/calgary/paper2 saves 52.0%
-Total encoding time: 112ms
+tests\calgary\paper2 to archives/calgary/paper2 saves 51.2%
+Total encoding time: 940ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\calgary\paper3...
-tests\calgary\paper3 to archives/calgary/paper3 saves 47.5%
-Total encoding time: 58ms
+tests\calgary\paper3 to archives/calgary/paper3 saves 47.3%
+Total encoding time: 514ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\calgary\paper4...
-tests\calgary\paper4 to archives/calgary/paper4 saves 44.2%
-Total encoding time: 16ms
+tests\calgary\paper4 to archives/calgary/paper4 saves 44.3%
+Total encoding time: 116ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\calgary\paper5...
-tests\calgary\paper5 to archives/calgary/paper5 saves 41.0%
-Total encoding time: 15ms
+tests\calgary\paper5 to archives/calgary/paper5 saves 41.5%
+Total encoding time: 109ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\calgary\paper6...
-tests\calgary\paper6 to archives/calgary/paper6 saves 45.2%
-Total encoding time: 47ms
+tests\calgary\paper6 to archives/calgary/paper6 saves 45.6%
+Total encoding time: 436ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\calgary\pic...
-tests\calgary\pic to archives/calgary/pic saves 87.2%
-Total encoding time: 3675ms
+tests\calgary\pic to archives/calgary/pic saves 86.8%
+Total encoding time: 8392ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\calgary\progc...
-tests\calgary\progc to archives/calgary/progc saves 45.8%
-Total encoding time: 74ms
+tests\calgary\progc to archives/calgary/progc saves 46.6%
+Total encoding time: 404ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\calgary\progl...
-tests\calgary\progl to archives/calgary/progl saves 55.8%
-Total encoding time: 363ms
+tests\calgary\progl to archives/calgary/progl saves 56.2%
+Total encoding time: 719ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\calgary\progp...
-tests\calgary\progp to archives/calgary/progp saves 55.0%
-Total encoding time: 107ms
+tests\calgary\progp to archives/calgary/progp saves 56.2%
+Total encoding time: 427ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\calgary\trans...
-tests\calgary\trans to archives/calgary/trans saves 52.8%
-Total encoding time: 1291ms
+tests\calgary\trans to archives/calgary/trans saves 53.1%
+Total encoding time: 1206ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-Average score: 50.2%
+Average score: 50.5%
 -------------------------------------------------------------------
 [Doing tests from cantrbry]
 Archiving tests\cantrbry\alice29.txt...
-tests\cantrbry\alice29.txt to archives/cantrbry/alice29.txt saves 54.4%
-Total encoding time: 240ms
+tests\cantrbry\alice29.txt to archives/cantrbry/alice29.txt saves 54.8%
+Total encoding time: 1848ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\cantrbry\asyoulik.txt...
-tests\cantrbry\asyoulik.txt to archives/cantrbry/asyoulik.txt saves 53.9%
-Total encoding time: 192ms
+tests\cantrbry\asyoulik.txt to archives/cantrbry/asyoulik.txt saves 51.8%
+Total encoding time: 1468ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\cantrbry\cp.html...
-tests\cantrbry\cp.html to archives/cantrbry/cp.html saves 52.1%
-Total encoding time: 34ms
+tests\cantrbry\cp.html to archives/cantrbry/cp.html saves 51.2%
+Total encoding time: 227ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\cantrbry\fields.c...
-tests\cantrbry\fields.c to archives/cantrbry/fields.c saves 50.9%
-Total encoding time: 13ms
+tests\cantrbry\fields.c to archives/cantrbry/fields.c saves 50.2%
+Total encoding time: 74ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\cantrbry\grammar.lsp...
-tests\cantrbry\grammar.lsp to archives/cantrbry/grammar.lsp saves 47.1%
-Total encoding time: 5ms
+tests\cantrbry\grammar.lsp to archives/cantrbry/grammar.lsp saves 44.5%
+Total encoding time: 27ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\cantrbry\kennedy.xls...
-tests\cantrbry\kennedy.xls to archives/cantrbry/kennedy.xls saves 71.7%
-Total encoding time: 1722ms
+tests\cantrbry\kennedy.xls to archives/cantrbry/kennedy.xls saves 67.5%
+Total encoding time: 9984ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\cantrbry\lcet10.txt...
-tests\cantrbry\lcet10.txt to archives/cantrbry/lcet10.txt saves 56.3%
-Total encoding time: 833ms
+tests\cantrbry\lcet10.txt to archives/cantrbry/lcet10.txt saves 56.1%
+Total encoding time: 5388ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\cantrbry\plrabn12.txt...
-tests\cantrbry\plrabn12.txt to archives/cantrbry/plrabn12.txt saves 55.0%
-Total encoding time: 995ms
+tests\cantrbry\plrabn12.txt to archives/cantrbry/plrabn12.txt saves 54.2%
+Total encoding time: 6050ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\cantrbry\ptt5...
-tests\cantrbry\ptt5 to archives/cantrbry/ptt5 saves 87.2%
-Total encoding time: 2800ms
+tests\cantrbry\ptt5 to archives/cantrbry/ptt5 saves 86.8%
+Total encoding time: 7004ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\cantrbry\sum...
-tests\cantrbry\sum to archives/cantrbry/sum saves 43.0%
-Total encoding time: 52ms
+tests\cantrbry\sum to archives/cantrbry/sum saves 44.0%
+Total encoding time: 431ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\cantrbry\xargs.1...
-tests\cantrbry\xargs.1 to archives/cantrbry/xargs.1 saves 40.7%
-Total encoding time: 5ms
+tests\cantrbry\xargs.1 to archives/cantrbry/xargs.1 saves 41.3%
+Total encoding time: 21ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-Average score: 55.7%
+Average score: 54.8%
 -------------------------------------------------------------------
 [Doing tests from html]
 Archiving tests\html\File1.html...
-tests\html\File1.html to archives/html/File1.html saves 55.1%
-Total encoding time: 146ms
+tests\html\File1.html to archives/html/File1.html saves 55.0%
+Total encoding time: 830ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html\File2.html...
-tests\html\File2.html to archives/html/File2.html saves 64.7%
-Total encoding time: 670ms
+tests\html\File2.html to archives/html/File2.html saves 65.4%
+Total encoding time: 3613ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html\File3.html...
-tests\html\File3.html to archives/html/File3.html saves 54.5%
-Total encoding time: 114ms
+tests\html\File3.html to archives/html/File3.html saves 56.3%
+Total encoding time: 823ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html\File4.html...
-tests\html\File4.html to archives/html/File4.html saves 62.3%
-Total encoding time: 375ms
+tests\html\File4.html to archives/html/File4.html saves 63.3%
+Total encoding time: 2191ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-Average score: 59.2%
+Average score: 60.0%
 -------------------------------------------------------------------
 [Doing tests from html2]
+Archiving tests\html2\atest.txt...
+tests\html2\atest.txt to archives/html2/atest.txt saves -3.2%
+Total encoding time: 1ms
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\Centrum Wiskunde & Informatica - Wikipedia.html...
-tests\html2\Centrum Wiskunde & Informatica - Wikipedia.html to archives/html2/Centrum Wiskunde & Informatica - Wikipedia.html saves 54.6%
-Total encoding time: 200ms
+tests\html2\Centrum Wiskunde & Informatica - Wikipedia.html to archives/html2/Centrum Wiskunde & Informatica - Wikipedia.html saves 55.7%
+Total encoding time: 1047ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\File1 - Copy (2).html...
-tests\html2\File1 - Copy (2).html to archives/html2/File1 - Copy (2).html saves 55.1%
-Total encoding time: 144ms
+tests\html2\File1 - Copy (2).html to archives/html2/File1 - Copy (2).html saves 56.2%
+Total encoding time: 830ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\File1 - Copy.html...
-tests\html2\File1 - Copy.html to archives/html2/File1 - Copy.html saves 55.1%
-Total encoding time: 143ms
+tests\html2\File1 - Copy.html to archives/html2/File1 - Copy.html saves 56.2%
+Total encoding time: 819ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\File1.html...
-tests\html2\File1.html to archives/html2/File1.html saves 55.1%
-Total encoding time: 142ms
+tests\html2\File1.html to archives/html2/File1.html saves 56.2%
+Total encoding time: 820ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\File2 - Copy (2).html...
-tests\html2\File2 - Copy (2).html to archives/html2/File2 - Copy (2).html saves 64.7%
-Total encoding time: 643ms
+tests\html2\File2 - Copy (2).html to archives/html2/File2 - Copy (2).html saves 64.8%
+Total encoding time: 3716ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\File2 - Copy.html...
-tests\html2\File2 - Copy.html to archives/html2/File2 - Copy.html saves 64.7%
-Total encoding time: 670ms
+tests\html2\File2 - Copy.html to archives/html2/File2 - Copy.html saves 64.8%
+Total encoding time: 3689ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\File2.html...
-tests\html2\File2.html to archives/html2/File2.html saves 64.7%
-Total encoding time: 658ms
+tests\html2\File2.html to archives/html2/File2.html saves 64.8%
+Total encoding time: 3838ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\File3 - Copy (2).html...
-tests\html2\File3 - Copy (2).html to archives/html2/File3 - Copy (2).html saves 54.5%
-Total encoding time: 111ms
+tests\html2\File3 - Copy (2).html to archives/html2/File3 - Copy (2).html saves 55.4%
+Total encoding time: 834ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\File3 - Copy.html...
-tests\html2\File3 - Copy.html to archives/html2/File3 - Copy.html saves 54.5%
-Total encoding time: 137ms
+tests\html2\File3 - Copy.html to archives/html2/File3 - Copy.html saves 55.4%
+Total encoding time: 823ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\File3.html...
-tests\html2\File3.html to archives/html2/File3.html saves 54.5%
-Total encoding time: 114ms
+tests\html2\File3.html to archives/html2/File3.html saves 55.4%
+Total encoding time: 821ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\File4 - Copy (2).html...
-tests\html2\File4 - Copy (2).html to archives/html2/File4 - Copy (2).html saves 62.3%
-Total encoding time: 372ms
+tests\html2\File4 - Copy (2).html to archives/html2/File4 - Copy (2).html saves 62.2%
+Total encoding time: 2184ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\File4 - Copy.html...
-tests\html2\File4 - Copy.html to archives/html2/File4 - Copy.html saves 62.3%
-Total encoding time: 376ms
+tests\html2\File4 - Copy.html to archives/html2/File4 - Copy.html saves 62.2%
+Total encoding time: 2227ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\File4.html...
-tests\html2\File4.html to archives/html2/File4.html saves 62.3%
-Total encoding time: 416ms
+tests\html2\File4.html to archives/html2/File4.html saves 62.2%
+Total encoding time: 2198ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\Fortran - Wikipedia.html...
-tests\html2\Fortran - Wikipedia.html to archives/html2/Fortran - Wikipedia.html saves 63.6%
-Total encoding time: 808ms
+tests\html2\Fortran - Wikipedia.html to archives/html2/Fortran - Wikipedia.html saves 61.9%
+Total encoding time: 4171ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\High-level programming language - Wikipedia.html...
-tests\html2\High-level programming language - Wikipedia.html to archives/html2/High-level programming language - Wikipedia.html saves 53.1%
-Total encoding time: 161ms
+tests\html2\High-level programming language - Wikipedia.html to archives/html2/High-level programming language - Wikipedia.html saves 53.9%
+Total encoding time: 1128ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\Imants Ziedonis — Vikipēdija.html...
-tests\html2\Imants Ziedonis — Vikipēdija.html to archives/html2/Imants Ziedonis — Vikipēdija.html saves 54.0%
-Total encoding time: 263ms
+tests\html2\Imants Ziedonis — Vikipēdija.html to archives/html2/Imants Ziedonis — Vikipēdija.html saves 56.2%
+Total encoding time: 1339ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\Java (programming language) - Wikipedia.html...
-tests\html2\Java (programming language) - Wikipedia.html to archives/html2/Java (programming language) - Wikipedia.html saves 64.3%
-Total encoding time: 690ms
+tests\html2\Java (programming language) - Wikipedia.html to archives/html2/Java (programming language) - Wikipedia.html saves 65.0%
+Total encoding time: 3846ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\JavaScript - Wikipedia.html...
 tests\html2\JavaScript - Wikipedia.html to archives/html2/JavaScript - Wikipedia.html saves 65.4%
-Total encoding time: 830ms
+Total encoding time: 4324ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\Jānis Čakste - Wikipedia.html...
-tests\html2\Jānis Čakste - Wikipedia.html to archives/html2/Jānis Čakste - Wikipedia.html saves 51.8%
-Total encoding time: 126ms
+tests\html2\Jānis Čakste - Wikipedia.html to archives/html2/Jānis Čakste - Wikipedia.html saves 52.4%
+Total encoding time: 925ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\Jānis Čakste — Vikipēdija.html...
 tests\html2\Jānis Čakste — Vikipēdija.html to archives/html2/Jānis Čakste — Vikipēdija.html saves 61.1%
-Total encoding time: 352ms
+Total encoding time: 2161ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\Ko studēt_ Studiju iespējas _ Rīgas Tehniskā universitāte.html...
-tests\html2\Ko studēt_ Studiju iespējas _ Rīgas Tehniskā universitāte.html to archives/html2/Ko studēt_ Studiju iespējas _ Rīgas Tehniskā universitāte.html saves 58.7%
-Total encoding time: 118ms
+tests\html2\Ko studēt_ Studiju iespējas _ Rīgas Tehniskā universitāte.html to archives/html2/Ko studēt_ Studiju iespējas _ Rīgas Tehniskā universitāte.html saves 60.3%
+Total encoding time: 810ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\Kārlis Ulmanis — Vikipēdija.html...
-tests\html2\Kārlis Ulmanis — Vikipēdija.html to archives/html2/Kārlis Ulmanis — Vikipēdija.html saves 66.5%
-Total encoding time: 558ms
+tests\html2\Kārlis Ulmanis — Vikipēdija.html to archives/html2/Kārlis Ulmanis — Vikipēdija.html saves 67.5%
+Total encoding time: 3223ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\Rīgas Tehniskā universitāte _ Inženierzinātņu centrs Baltijā.html...
-tests\html2\Rīgas Tehniskā universitāte _ Inženierzinātņu centrs Baltijā.html to archives/html2/Rīgas Tehniskā universitāte _ Inženierzinātņu centrs Baltijā.html saves 59.4%
-Total encoding time: 137ms
+tests\html2\Rīgas Tehniskā universitāte _ Inženierzinātņu centrs Baltijā.html to archives/html2/Rīgas Tehniskā universitāte _ Inženierzinātņu centrs Baltijā.html saves 61.6%
+Total encoding time: 972ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\Serialization Filtering.html...
-tests\html2\Serialization Filtering.html to archives/html2/Serialization Filtering.html saves 58.8%
-Total encoding time: 146ms
+tests\html2\Serialization Filtering.html to archives/html2/Serialization Filtering.html saves 60.0%
+Total encoding time: 782ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\Structured programming - Wikipedia.html...
-tests\html2\Structured programming - Wikipedia.html to archives/html2/Structured programming - Wikipedia.html saves 57.1%
-Total encoding time: 283ms
+tests\html2\Structured programming - Wikipedia.html to archives/html2/Structured programming - Wikipedia.html saves 56.9%
+Total encoding time: 1709ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\Studijas _ Rīgas Tehniskā universitāte.html...
-tests\html2\Studijas _ Rīgas Tehniskā universitāte.html to archives/html2/Studijas _ Rīgas Tehniskā universitāte.html saves 63.0%
-Total encoding time: 199ms
+tests\html2\Studijas _ Rīgas Tehniskā universitāte.html to archives/html2/Studijas _ Rīgas Tehniskā universitāte.html saves 64.0%
+Total encoding time: 1097ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\html2\Studiju programmas _ Rīgas Tehniskā universitāte.html...
-tests\html2\Studiju programmas _ Rīgas Tehniskā universitāte.html to archives/html2/Studiju programmas _ Rīgas Tehniskā universitāte.html saves 69.9%
-Total encoding time: 265ms
+Expected size was 144738, actual size is 2
+tests\html2\Studiju programmas _ Rīgas Tehniskā universitāte.html to archives/html2/Studiju programmas _ Rīgas Tehniskā universitāte.html saves 69.3%
+Total encoding time: 1340ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-Average score: 59.7%
+Average score: 58.0%
 -------------------------------------------------------------------
 [Doing tests from large]
 Archiving tests\large\a.txt...
-tests\large\a.txt to archives/large/a.txt saves -800.0%
-Total encoding time: 1ms
+Expected size was 1, actual size is 0
+tests\large\a.txt to archives/large/a.txt saves -100.0%
+Total encoding time: 0ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\large\aaa.txt...
-tests\large\aaa.txt to archives/large/aaa.txt saves 98.4%
-Total encoding time: 134ms
+Expected size was 100000, actual size is 7
+tests\large\aaa.txt to archives/large/aaa.txt saves 99.7%
+Total encoding time: 896ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\large\alphabet.txt...
+Expected size was 100000, actual size is 2
 tests\large\alphabet.txt to archives/large/alphabet.txt saves 99.5%
-Total encoding time: 116ms
+Total encoding time: 377ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\large\bib...
-tests\large\bib to archives/large/bib saves 53.8%
-Total encoding time: 156ms
+tests\large\bib to archives/large/bib saves 53.9%
+Total encoding time: 1205ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\large\bible.txt...
-tests\large\bible.txt to archives/large/bible.txt saves 65.1%
-Total encoding time: 12109ms
+tests\large\bible.txt to archives/large/bible.txt saves 65.2%
+Total encoding time: 52265ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\large\book1...
-tests\large\book1 to archives/large/book1 saves 54.3%
-Total encoding time: 1725ms
+tests\large\book1 to archives/large/book1 saves 55.1%
+Total encoding time: 9763ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\large\book2...
-tests\large\book2 to archives/large/book2 saves 55.2%
-Total encoding time: 1344ms
+tests\large\book2 to archives/large/book2 saves 55.7%
+Total encoding time: 7678ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\large\E.coli...
-tests\large\E.coli to archives/large/E.coli saves 73.1%
-Total encoding time: 11281ms
+tests\large\E.coli to archives/large/E.coli saves 75.0%
+Total encoding time: 37052ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\large\geo...
-tests\large\geo to archives/large/geo saves 38.8%
-Total encoding time: 243ms
+tests\large\geo to archives/large/geo saves 37.2%
+Total encoding time: 1589ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\large\news...
-tests\large\news to archives/large/news saves 47.5%
-Total encoding time: 1774ms
+tests\large\news to archives/large/news saves 48.5%
+Total encoding time: 5267ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\large\obj1...
-tests\large\obj1 to archives/large/obj1 saves 36.3%
-Total encoding time: 49ms
+tests\large\obj1 to archives/large/obj1 saves 35.8%
+Total encoding time: 500ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\large\obj2...
-tests\large\obj2 to archives/large/obj2 saves 44.8%
-Total encoding time: 2746ms
+tests\large\obj2 to archives/large/obj2 saves 45.2%
+Total encoding time: 3234ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\large\paper1...
-tests\large\paper1 to archives/large/paper1 saves 46.8%
-Total encoding time: 84ms
+tests\large\paper1 to archives/large/paper1 saves 48.4%
+Total encoding time: 590ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\large\paper2...
-tests\large\paper2 to archives/large/paper2 saves 52.0%
-Total encoding time: 127ms
+tests\large\paper2 to archives/large/paper2 saves 51.2%
+Total encoding time: 926ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\large\paper3...
-tests\large\paper3 to archives/large/paper3 saves 47.5%
-Total encoding time: 62ms
+tests\large\paper3 to archives/large/paper3 saves 47.3%
+Total encoding time: 483ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\large\paper4...
-tests\large\paper4 to archives/large/paper4 saves 44.2%
-Total encoding time: 21ms
+tests\large\paper4 to archives/large/paper4 saves 44.3%
+Total encoding time: 107ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\large\paper5...
-tests\large\paper5 to archives/large/paper5 saves 41.0%
-Total encoding time: 21ms
+tests\large\paper5 to archives/large/paper5 saves 41.5%
+Total encoding time: 99ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\large\paper6...
-tests\large\paper6 to archives/large/paper6 saves 45.2%
-Total encoding time: 62ms
+tests\large\paper6 to archives/large/paper6 saves 45.6%
+Total encoding time: 393ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\large\pi.txt...
-tests\large\pi.txt to archives/large/pi.txt saves 55.5%
-Total encoding time: 1892ms
+tests\large\pi.txt to archives/large/pi.txt saves 57.5%
+Total encoding time: 12007ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\large\pic...
-tests\large\pic to archives/large/pic saves 87.2%
-Total encoding time: 2851ms
+tests\large\pic to archives/large/pic saves 86.8%
+Total encoding time: 7135ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\large\progc...
-tests\large\progc to archives/large/progc saves 45.8%
-Total encoding time: 64ms
+tests\large\progc to archives/large/progc saves 46.6%
+Total encoding time: 409ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\large\progl...
-tests\large\progl to archives/large/progl saves 55.8%
-Total encoding time: 310ms
+tests\large\progl to archives/large/progl saves 56.2%
+Total encoding time: 719ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\large\progp...
-tests\large\progp to archives/large/progp saves 55.0%
-Total encoding time: 93ms
+tests\large\progp to archives/large/progp saves 56.2%
+Total encoding time: 440ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\large\random.txt...
-tests\large\random.txt to archives/large/random.txt saves 17.5%
-Total encoding time: 227ms
+tests\large\random.txt to archives/large/random.txt saves 24.9%
+Total encoding time: 1651ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\large\trans...
-tests\large\trans to archives/large/trans saves 52.8%
-Total encoding time: 1062ms
+tests\large\trans to archives/large/trans saves 53.1%
+Total encoding time: 1152ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\large\world192.txt...
-tests\large\world192.txt to archives/large/world192.txt saves 64.9%
-Total encoding time: 11482ms
+tests\large\world192.txt to archives/large/world192.txt saves 64.2%
+Total encoding time: 37627ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-Average score: 22.2%
+Average score: 49.8%
 -------------------------------------------------------------------
 [Doing tests from misc]
 Archiving tests\misc\atest.txt...
-tests\misc\atest.txt to archives/misc/atest.txt saves -25.8%
-Total encoding time: 0ms
+tests\misc\atest.txt to archives/misc/atest.txt saves 32.2%
+Total encoding time: 21ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Archiving tests\misc\pi.txt...
-tests\misc\pi.txt to archives/misc/pi.txt saves 55.5%
-Total encoding time: 1928ms
+tests\misc\pi.txt to archives/misc/pi.txt saves 57.5%
+Total encoding time: 11801ms
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-Average score: 14.8%
+Average score: 44.9%
 -------------------------------------------------------------------
-Total time taken: 86s
-Total average score: 36.8%
+Total time taken: 337s
+Total average score: 52.5%
 
 All test completed successfully!

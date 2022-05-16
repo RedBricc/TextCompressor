@@ -23,14 +23,22 @@ public class Main {
 				fileName = sc.next();
 				System.out.print("archive name: ");
 				outFileName = sc.next();
-				Deflate.comp(fileName, outFileName);
+				try {
+					Deflate.comp(fileName, outFileName);
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
 				break;
 			case "decomp":
 				System.out.print("archive name: ");
 				fileName = sc.next();
 				System.out.print("file name: ");
 				outFileName = sc.next();
-				Deflate.decomp(fileName, outFileName);
+				try {
+					Deflate.decomp(fileName, outFileName);
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
 				break;
 			case "size":
 				System.out.print("file name: ");
@@ -129,6 +137,20 @@ public class Main {
 			return false;
 		}
 	}
+	public static boolean equal(byte[] buf1, byte[] buf2) {
+		if (buf1.length != buf2.length) {
+			System.out.printf("Expected size was %d, actual size is %d\n", buf1.length, buf2.length);
+			return false;
+		}
+		for (int i=0; i < buf1.length; i++) {
+			if (buf1[i] != buf2[i]) {
+				System.out.printf("Value at %d should have been %d, instead was %d\n", i, buf1[i], buf2[i]);
+				return false;
+			}
+				
+		}
+		return true;
+	}
 	
 	static void test() {
 		File testRoot = new File("tests/html2");
@@ -138,8 +160,16 @@ public class Main {
 			String archiveName = "archives/" + testRoot.getParentFile().getName() + "/" + testRoot.getName();
 			long start = System.nanoTime();
 			new File(archiveName).delete();
-			Deflate.comp(fileName, archiveName); 
-			Deflate.decomp(archiveName, outFileName);
+			try {
+				Deflate.comp(fileName, archiveName);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+			try {
+				Deflate.decomp(archiveName, outFileName);
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
 			long end = System.nanoTime();
 			Double rez = eavluate(fileName, archiveName);
 			System.out.println("Time taken: " + (end-start)/1000000000 + "s");
@@ -147,6 +177,7 @@ public class Main {
 				System.out.println("Test Failed!");
 				System.out.println(1/0);
 			}
+			return;
 		}
 			
 		String failed = "";
@@ -182,9 +213,19 @@ public class Main {
 				long start = System.nanoTime();
 				new File(archiveName).delete();
 				System.out.println("Archiving " + fileName + "...");
-				Deflate.comp(fileName, archiveName); 
+				try {
+					Deflate.comp(fileName, archiveName);
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.out.println(1/0);
+				} 
 				long end = System.nanoTime();
-				Deflate.decomp(archiveName, outFileName);
+				try {
+					Deflate.decomp(archiveName, outFileName);
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.out.println(1/0);
+				}
 				Double rez = eavluate(fileName, archiveName);
 				System.out.println("Total encoding time: " + (end-start)/1000000 + "ms");
 				System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
