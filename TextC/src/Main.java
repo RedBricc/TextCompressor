@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
+// NOTE: Part of this task was to compile everyting onto one file, this was not done by choice.
 public class Main {
 	public static void main(String[] args) {
 		String choiseStr;
